@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Miembros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .hidden {
+        display: none;
+      }
+      /* Estilos para los sliders de dos tonos */
+      .slider-container {
+        position: relative;
+        width: 100%;
+        height: 20px;
+      }
+      .slider-track-bg {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 100%;
+          height: 8px;
+          background: linear-gradient(to right, #8b5cf6 0%, #8b5cf6 50%, #fcd34d 50%, #fcd34d 100%);
+          border-radius: 4px;
+          z-index: 0; /* Capa de la barra */
+      }
+      .slider-dots {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+        z-index: 1; /* Capa de los puntos */
+      }
+      .dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+      }
+      input[type="range"] {
+          -webkit-appearance: none;
+          appearance: none;
+          background: transparent;
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2; /* Capa del botón */
+      }
+
+      /* Estilo de la manija (thumb) para WebKit */
+      input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          height: 20px;
+          width: 20px;
+          background-color: #ffffff;
+          border: 2px solid #6b7280;
+          border-radius: 50%;
+          margin-top: -6px;
+      }
+
+      /* Estilo de la pista (track) para Firefox */
+      input[type="range"]::-moz-range-track {
+          height: 8px;
+          background: transparent;
+      }
+
+      /* Estilo de la manija (thumb) para Firefox */
+      input[type="range"]::-moz-range-thumb {
+          height: 20px;
+          width: 20px;
+          background-color: #ffffff;
+          border: 2px solid #6b7280;
+          border-radius: 50%;
+      }
+
+      /* Estilos para la tabla */
+      .metrics-table th, .metrics-table td {
+          padding: 0.75rem;
+          text-align: center;
+      }
+      .metrics-table th {
+          background-color: #f3f4f6;
+          font-weight: 600;
+          border-bottom: 2px solid #e5e7eb;
+      }
+      .metrics-table td {
+          border-bottom: 1px solid #e5e7eb;
+      }
+      .metrics-table tr:last-child td {
+          border-bottom: none;
+      }
+      
+      /* Estilos para los nuevos índices */
+      .quality-box {
+          padding: 0.25rem 0.75rem;
+          border-radius: 9999px;
+          font-weight: 600;
+          color: white;
+          font-size: 0.75rem;
+          margin-bottom: 0.5rem;
+          display: inline-block;
+      }
+      .quality-box.excellent { background-color: #10b981; } /* verde */
+      .quality-box.good { background-color: #3b82f6; } /* azul */
+      .quality-box.average { background-color: #eab308; } /* amarillo */
+      .quality-box.poor { background-color: #ef4444; } /* rojo */
+
+      /* Estilos para el PDF del informe */
+      .report-container {
+        font-family: 'Inter', sans-serif;
+        padding: 20px;
+        color: #1f2937;
+        font-size: 10px; /* Tamaño de fuente más pequeño para un mejor ajuste */
+      }
+      .report-header {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .report-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .report-subtitle {
+        color: #4b5563;
+        font-size: 8px;
+      }
+      .report-divider {
+        border: 1px solid #e5e7eb;
+        margin-bottom: 15px;
+        margin-top: 15px;
+      }
+      .report-section-title {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        margin-top: 15px;
+      }
+      .report-card {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background-color: #f9fafb;
+      }
+      .report-card-title {
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #4b5563;
+      }
+      .report-summary-list {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 15px;
+      }
+      .report-summary-item {
+        margin-bottom: 3px;
+      }
+      
+      .report-card ul, .report-card li {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <!-- Contenedor principal de la aplicación -->
+    <div id="app-container" class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-2xl transition-all duration-300 transform scale-100">
+
+        <!-- Sección de Bienvenida -->
+        <div id="welcome-section" class="transition-opacity duration-500">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Proyecto Magnes</h1>
+            <p class="text-gray-600 text-center text-sm mb-6">Crea y gestiona equipos con ayuda de evidencia científica</p>
+            <div class="flex flex-col items-center">
+                <button id="startBtn" class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">Comenzar</button>
+            </div>
+        </div>
+
+        <!-- Sección de Opciones -->
+        <div id="options-section" class="hidden transition-opacity duration-500">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Elige el método de creación</h1>
+            <p class="text-gray-600 text-center mb-6">¿Quieres generar miembros automáticamente o añadirlos manualmente?</p>
+            <div class="flex flex-col items-center space-y-4">
+                <button id="autoModeBtn" class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">Generar automáticamente</button>
+                <button id="manualModeBtn" class="w-full bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-500 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-gray-300 focus:ring-opacity-50">Añadir manualmente</button>
+                <button id="backFromOptionsBtn" class="w-full mt-3 text-sm text-gray-500 hover:text-gray-700 transition duration-300">Atrás</button>
+            </div>
+        </div>
+
+        <!-- Paso 1: Elegir el número total de miembros -->
+        <div id="step-1" class="hidden transition-opacity duration-500">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Selecciona el total de miembros</h1>
+            <p class="text-gray-600 text-center mb-6">Introduce el número total de miembros que tendrá tu equipo.</p>
+            <div class="flex flex-col items-center">
+                <input type="number" id="totalMembersInput" min="1" value="5" class="w-full p-3 mb-4 text-center text-lg rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-200">
+                <button id="nextStepBtn" class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">Siguiente</button>
+                <button id="backFromStep1Btn" class="w-full mt-3 text-sm text-gray-500 hover:text-gray-700 transition duration-300">Atrás</button>
+            </div>
+            <div id="message-box" class="mt-4 p-3 rounded-lg text-sm text-red-600 bg-red-100 hidden"></div>
+        </div>
+
+        <!-- Paso 2: Elegir el número de miembros automáticos -->
+        <div id="step-2" class="hidden transition-opacity duration-500">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">¿Cuántos miembros automáticos?</h1>
+            <p id="step2-info" class="text-gray-600 text-center mb-6"></p>
+            <div class="flex flex-col items-center">
+                <select id="autoMembersSelect" class="w-full p-3 mb-4 text-center text-lg rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-200"></select>
+                <button id="generateBtn" class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">Generar Miembros</button>
+                <button id="backBtn" class="w-full mt-3 bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-500 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-gray-300 focus:ring-opacity-50">Atrás</button>
+            </div>
+            <div id="step2-message-box" class="mt-4 p-3 rounded-lg text-sm text-red-600 bg-red-100 hidden"></div>
+        </div>
+        
+        <!-- Paso 3: Mostrar los resultados -->
+        <div id="step-3" class="hidden transition-opacity duration-500">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Lista de Miembros</h1>
+            <ul id="membersList" class="space-y-3 mb-6 p-4 bg-gray-50 rounded-lg shadow-inner max-h-80 overflow-y-auto">
+                <!-- La lista de miembros se generará aquí -->
+            </ul>
+
+            <!-- Contenedor para las métricas del equipo y la tabla -->
+            <div id="metrics-container" class="space-y-6">
+              <!-- Sección de Métricas del Equipo -->
+              <div id="team-metrics" class="bg-gray-50 p-6 rounded-lg shadow-inner mb-6 hidden">
+                  <h2 class="text-xl font-bold text-gray-800 mb-4 text-center">Índices del Equipo</h2>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                      <div class="flex flex-col items-center p-2">
+                        <h3 class="font-bold text-gray-700 mb-1">Dominancia</h3>
+                        <div class="quality-box" id="dominanceQualitative"></div>
+                        <p class="text-gray-600 mt-1 text-sm" id="dominanceValue"></p>
+                      </div>
+                      <div class="flex flex-col items-center p-2">
+                        <h3 class="font-bold text-gray-700 mb-1">Sociabilidad</h3>
+                        <div class="quality-box" id="sociabilityQualitative"></div>
+                        <p class="text-gray-600 mt-1 text-sm" id="sociabilityValue"></p>
+                      </div>
+                      <div class="flex flex-col items-center p-2">
+                        <h3 class="font-bold text-gray-700 mb-1">Resolutividad</h3>
+                        <div class="quality-box" id="resolutivityQualitative"></div>
+                        <p class="text-gray-600 mt-1 text-sm" id="resolutivityValue"></p>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Tabla de Métricas Individuales -->
+              <div id="individual-metrics-table-container" class="bg-white p-4 rounded-lg shadow-lg hidden">
+                  <h2 class="text-xl font-bold text-center text-gray-800 mb-4">Métricas Individuales</h2>
+                  <div class="flex justify-center space-x-4 mb-4">
+                      <button id="qualitativeBtn" class="py-2 px-4 rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 focus:outline-none">Cualitativo</button>
+                      <button id="quantitativeBtn" class="py-2 px-4 rounded-full text-blue-600 bg-gray-200 hover:bg-gray-300 transition-colors duration-200 focus:outline-none">Cuantitativo</button>
+                  </div>
+                  <table class="w-full border-collapse metrics-table">
+                      <thead>
+                          <tr>
+                              <th class="rounded-tl-lg">Nombre</th>
+                              <th>Dominancia</th>
+                              <th>Sociabilidad</th>
+                              <th>Resolutividad</th>
+                              <th class="rounded-tr-lg">Rol</th>
+                          </tr>
+                      </thead>
+                      <tbody id="individualMetricsTableBody">
+                          <!-- Filas de la tabla se generarán aquí -->
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <div class="flex justify-center space-x-4 mt-6">
+                <button id="resetBtn" class="bg-red-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-red-600 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50">Reiniciar</button>
+                <button id="generateReportBtn" class="bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-800 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-gray-700 focus:ring-opacity-50 hidden">Generar Informe IA</button>
+                <button id="continueBtn" class="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 hidden">Continuar</button>
+            </div>
+            <div id="copy-message-box" class="mt-4 p-3 rounded-lg text-sm text-green-600 bg-green-100 hidden"></div>
+        </div>
+
+        <!-- Paso 4: Sección para la entrada manual de miembros -->
+        <div id="manual-input-section" class="hidden transition-opacity duration-500">
+            <h1 id="manual-input-title" class="text-3xl font-bold text-center text-gray-800 mb-6"></h1>
+            <p id="manual-input-desc" class="text-gray-600 text-center mb-6"></p>
+            <div class="flex flex-col items-center">
+                <div id="member-form" class="w-full space-y-8">
+                    <input type="text" id="memberNameInput" placeholder="Nombre del Miembro" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-200">
+                    
+                    <!-- Sliders de Dominancia -->
+                    <div>
+                        <h3 class="block text-gray-700 font-semibold mb-4 text-lg">Dominancia:</h3>
+                        <div class="space-y-4">
+                            <!-- Item 1 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Toma el rol de apoyo</span>
+                                    <span>Toma el rol de liderazgo</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="dominanceSlider1" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                            <!-- Item 2 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Recibe instrucciones</span>
+                                    <span>Dirige la actividad</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="dominanceSlider2" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                            <!-- Item 3 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Muestra una conducta pasiva</span>
+                                    <span>Muestra una conducta dominante</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="dominanceSlider3" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sliders de Sociabilidad -->
+                    <div>
+                        <h3 class="block text-gray-700 font-semibold mb-4 text-lg">Sociabilidad:</h3>
+                        <div class="space-y-4">
+                            <!-- Item 1 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Muestra conductas antipáticas</span>
+                                    <span>Muestra conductas simpáticas</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="sociabilitySlider1" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                            <!-- Item 2 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Muestra conductas frías</span>
+                                    <span>Muestra conductas afectuosas</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="sociabilitySlider2" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                            <!-- Item 3 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Muestra conductas solitarias</span>
+                                    <span>Muestra conductas sociables</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="sociabilitySlider3" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sliders de Resolutividad -->
+                    <div>
+                        <h3 class="block text-gray-700 font-semibold mb-4 text-lg">Resolutividad:</h3>
+                        <div class="space-y-4">
+                            <!-- Item 1 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Se podría escaquear de la tarea</span>
+                                    <span>Afrontaría el trabajo con dedicación</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="resolutivitySlider1" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                            <!-- Item 2 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Trabaja de forma dispersa</span>
+                                    <span>Trabaja de forma centrada</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="resolutivitySlider2" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                            <!-- Item 3 -->
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-500">
+                                    <span>Es despreocupado</span>
+                                    <span>Es responsable</span>
+                                </div>
+                                <div class="slider-container mt-1">
+                                    <div class="slider-track-bg"></div>
+                                    <div class="slider-dots">
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #5a3ba2;"></span>
+                                        <span class="dot" style="background-color: #4b5563;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                        <span class="dot" style="background-color: #c48b0a;"></span>
+                                    </div>
+                                    <input type="range" id="resolutivitySlider3" min="-3" max="3" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="addManualMemberBtn" class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 mt-6">Añadir Miembro</button>
+            </div>
+            <div id="manual-message-box" class="mt-4 p-3 rounded-lg text-sm text-red-600 bg-red-100 hidden"></div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        // Referencias a los elementos del DOM
+        const appContainer = document.getElementById('app-container');
+        const welcomeSection = document.getElementById('welcome-section');
+        const optionsSection = document.getElementById('options-section');
+        const step1 = document.getElementById('step-1');
+        const step2 = document.getElementById('step-2');
+        const step3 = document.getElementById('step-3');
+        const manualInputSection = document.getElementById('manual-input-section');
+
+        const startBtn = document.getElementById('startBtn');
+        const autoModeBtn = document.getElementById('autoModeBtn');
+        const manualModeBtn = document.getElementById('manualModeBtn');
+        const backFromOptionsBtn = document.getElementById('backFromOptionsBtn');
+        const backFromStep1Btn = document.getElementById('backFromStep1Btn');
+
+        const totalMembersInput = document.getElementById('totalMembersInput');
+        const nextStepBtn = document.getElementById('nextStepBtn');
+        const messageBox = document.getElementById('message-box');
+        const autoMembersSelect = document.getElementById('autoMembersSelect');
+        const generateBtn = document.getElementById('generateBtn');
+        const backBtn = document.getElementById('backBtn');
+        const step2Info = document.getElementById('step2-info');
+        const step2MessageBox = document.getElementById('step2-message-box');
+        const membersList = document.getElementById('membersList');
+        const resetBtn = document.getElementById('resetBtn');
+        const generateReportBtn = document.getElementById('generateReportBtn');
+        const continueBtn = document.getElementById('continueBtn');
+        const teamMetricsDiv = document.getElementById('team-metrics');
+        const dominanceQualitativeDiv = document.getElementById('dominanceQualitative');
+        const dominanceValueDiv = document.getElementById('dominanceValue');
+        const sociabilityQualitativeDiv = document.getElementById('sociabilityQualitative');
+        const sociabilityValueDiv = document.getElementById('sociabilityValue');
+        const resolutivityQualitativeDiv = document.getElementById('resolutivityQualitative');
+        const resolutivityValueDiv = document.getElementById('resolutivityValue');
+        const copyMessageBox = document.getElementById('copy-message-box');
+
+        const manualInputTitle = document.getElementById('manual-input-title');
+        const manualInputDesc = document.getElementById('manual-input-desc');
+        const memberNameInput = document.getElementById('memberNameInput');
+
+        // Referencias a los nuevos sliders
+        const dominanceSlider1 = document.getElementById('dominanceSlider1');
+        const dominanceSlider2 = document.getElementById('dominanceSlider2');
+        const dominanceSlider3 = document.getElementById('dominanceSlider3');
+        const sociabilitySlider1 = document.getElementById('sociabilitySlider1');
+        const sociabilitySlider2 = document.getElementById('sociabilitySlider2');
+        const sociabilitySlider3 = document.getElementById('sociabilitySlider3');
+        const resolutivitySlider1 = document.getElementById('resolutivitySlider1');
+        const resolutivitySlider2 = document.getElementById('resolutivitySlider2');
+        const resolutivitySlider3 = document.getElementById('resolutivitySlider3');
+
+        const addManualMemberBtn = document.getElementById('addManualMemberBtn');
+        const manualMessageBox = document.getElementById('manual-message-box');
+        const individualMetricsTableContainer = document.getElementById('individual-metrics-table-container');
+        const individualMetricsTableBody = document.getElementById('individualMetricsTableBody');
+
+        const qualitativeBtn = document.getElementById('qualitativeBtn');
+        const quantitativeBtn = document.getElementById('quantitativeBtn');
+
+        let totalMembers = 0;
+        let autoMembersCount = 0;
+        let manualMembersCount = 0;
+        let membersData = [];
+        let membersAdded = 0;
+        let isQualitativeView = true;
+
+        // Roles y sus valores normalizados (los valores originales se dividen entre 3 para que coincidan con la escala de los miembros)
+        const ROLES_DATA = [
+            { name: "Team Leader", dominance: 2.35, sociability: 0.04, resolutivity: 2.58, type: 'positive' },
+            { name: "Task Motivator", dominance: 1.96, sociability: -0.04, resolutivity: 0.64, type: 'positive' },
+            { name: "Social", dominance: -0.45, sociability: 2.84, resolutivity: -0.03, type: 'positive' },
+            { name: "Coordinator", dominance: 0.56, sociability: 2.15, resolutivity: 1.69, type: 'positive' },
+            { name: "Follower", dominance: -2.39, sociability: 1.24, resolutivity: 0.56, type: 'positive' },
+            { name: "Teamwork Support", dominance: -2.15, sociability: 0.11, resolutivity: 2.24, type: 'positive' },
+            { name: "Evaluator", dominance: -0.10, sociability: -2.23, resolutivity: 2.30, type: 'positive' },
+            { name: "Problem Solver", dominance: -0.25, sociability: 0.02, resolutivity: 1.28, type: 'positive' },
+            { name: "Task Completer", dominance: -0.56, sociability: -0.08, resolutivity: 2.64, type: 'positive' },
+            // Roles negativos
+            { name: "Power Seeker", dominance: 2.13, sociability: -2.43, resolutivity: -0.43, type: 'negative' },
+            { name: "Critic", dominance: -0.30, sociability: -1.31, resolutivity: -0.92, type: 'negative' },
+            { name: "Attention Seeker", dominance: 0.50, sociability: 0.00, resolutivity: -2.46, type: 'negative' },
+            { name: "Negative", dominance: -2.22, sociability: -2.22, resolutivity: -2.75, type: 'negative' },
+        ];
+        
+        // Obtiene solo los roles positivos para la generación automática
+        const positiveRoles = ROLES_DATA.filter(role => role.type === 'positive');
+        
+        /**
+         * Finds the best role to add to the team to minimize the sum vector's distance to (0,0,0).
+         * This function follows a greedy, iterative optimization approach based on sum vectors.
+         * @param {Array<Object>} currentMembers - The members currently in the team.
+         * @returns {Object} The role from positiveRoles that best balances the team.
+         */
+        function findBestRoleToAdd(currentMembers) {
+            let bestRole = null;
+            let minDistance = Infinity;
+
+            // Escala los valores del equipo a la escala de -3 a 3 para el cálculo
+            const scaledMembers = currentMembers.map(m => ({
+                dominance: m.dominance * 3,
+                sociability: m.sociability * 3,
+                resolutivity: m.resolutivity * 3
+            }));
+            
+            const currentSumD = scaledMembers.reduce((sum, m) => sum + m.dominance, 0);
+            const currentSumS = scaledMembers.reduce((sum, m) => sum + m.sociability, 0);
+            const currentSumR = scaledMembers.reduce((sum, m) => sum + m.resolutivity, 0);
+            
+            for (const role of positiveRoles) {
+                // Simular la adición del rol y calcular el nuevo vector de suma
+                const newSumD = currentSumD + role.dominance;
+                const newSumS = currentSumS + role.sociability;
+                const newSumR = currentSumR + role.resolutivity;
+
+                // Calcular la distancia euclidiana al punto ideal (0,0,0)
+                const distance = Math.sqrt(
+                    Math.pow(newSumD, 2) + 
+                    Math.pow(newSumS, 2) + 
+                    Math.pow(newSumR, 2)
+                );
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    bestRole = role;
+                }
+            }
+            return bestRole;
+        }
+
+        /**
+         * Calculates the euclidean distance between a member and a role.
+         * @param {Object} member - The member object.
+         * @param {Object} role - The role object.
+         * @returns {number} The euclidean distance.
+         */
+        function calculateDistance(member, role) {
+            const dDiff = member.dominance * 3 - role.dominance;
+            const sDiff = member.sociability * 3 - role.sociability;
+            const rDiff = member.resolutivity * 3 - role.resolutivity;
+            return Math.sqrt(dDiff * dDiff + sDiff * sDiff + rDiff * rDiff);
+        }
+
+        /**
+         * Suggests a role for a team member based on the closest metric.
+         * @param {Object} member - The member object with metrics.
+         * @returns {Object} An object with the role name and if it is an alert.
+         */
+        function getRecommendedRole(member) {
+            let bestMatch = { role: null, distance: Infinity };
+
+            for (const role of ROLES_DATA) {
+                const distance = calculateDistance(member, role);
+                
+                if (distance < bestMatch.distance) {
+                    bestMatch.distance = distance;
+                    bestMatch.role = role;
+                }
+            }
+
+            // Check if the best fit is a negative role
+            if (bestMatch.role.type === 'negative') {
+                return { name: bestMatch.role.name, isAlert: true };
+            }
+            
+            return { name: bestMatch.role.name, isAlert: false };
+        }
+
+        // Function to get the metric description based on the value.
+        // The value is already in the range of -1 to 1.
+        function getMetricDescription(metricType, value) {
+            const scaledValue = value * 3;
+            
+            switch (metricType) {
+                case 'dominance':
+                    if (scaledValue >= 2.5) return 'Muy dominante';
+                    if (scaledValue >= 1.5) return 'Dominante';
+                    if (scaledValue >= 0.5) return 'Algo dominante';
+                    if (scaledValue > -0.5 && scaledValue < 0.5) return 'Neutro';
+                    if (scaledValue <= -2.5) return 'Muy seguidor';
+                    if (scaledValue <= -1.5) return 'Seguidor';
+                    if (scaledValue <= -0.5) return 'Algo seguidor';
+                    break;
+                case 'sociability':
+                    if (scaledValue >= 2.5) return 'Muy sociable';
+                    if (scaledValue >= 1.5) return 'Sociable';
+                    if (scaledValue >= 0.5) return 'Algo sociable';
+                    if (scaledValue > -0.5 && scaledValue < 0.5) return 'Neutro';
+                    if (scaledValue <= -2.5) return 'Nada sociable';
+                    if (scaledValue <= -1.5) return 'No muy sociable';
+                    if (scaledValue <= -0.5) return 'Poco sociable';
+                    break;
+                case 'resolutivity':
+                    if (scaledValue >= 2.5) return 'Muy focalizado';
+                    if (scaledValue >= 1.5) return 'Focalizado';
+                    if (scaledValue >= 0.5) return 'Algo focalizado';
+                    if (scaledValue > -0.5 && scaledValue < 0.5) return 'Neutro';
+                    if (scaledValue <= -2.5) return 'Muy disperso';
+                    if (scaledValue <= -1.5) return 'Disperso';
+                    if (scaledValue <= -0.5) return 'Algo disperso';
+                    break;
+            }
+            return 'No disponible';
+        }
+
+        /**
+         * Displays an error message in the message box.
+         * @param {string} message - The message to display.
+         * @param {HTMLElement} box - The message box where the message will be shown.
+         */
+        function showMessage(message, box) {
+            box.textContent = message;
+            box.classList.remove('hidden');
+        }
+
+        /**
+         * Hides a message box.
+         * @param {HTMLElement} box - The message box to hide.
+         */
+        function hideMessage(box) {
+            box.classList.add('hidden');
+        }
+        
+        /**
+         * Calculates a team index based on the sum of positive and negative metric values.
+         * @param {Array<Object>} metrics - The array of member objects.
+         * @param {string} metricName - The name of the metric to calculate ('dominance', 'sociability', 'resolutivity').
+         * @returns {number} The calculated index value, ranging from -1 to 1.
+         */
+        function calculateIndex(metrics, metricName) {
+            if (metrics.length === 0) return 0;
+            
+            let posSum = 0;
+            let negSum = 0;
+
+            metrics.forEach(member => {
+                const value = member[metricName];
+                if (value >= 0) {
+                    posSum += value;
+                } else {
+                    negSum += Math.abs(value);
+                }
+            });
+
+            const totalSum = posSum + negSum;
+            if (totalSum === 0) return 0;
+
+            // Fórmulas revisadas para Dominancia, Sociabilidad y Resolutividad
+            if (metricName === 'resolutivity') {
+                return (posSum - negSum) / totalSum;
+            }
+            if (metricName === 'dominance') {
+                return (posSum - negSum) / totalSum;
+            }
+            if (metricName === 'sociability') {
+                return (posSum - negSum) / totalSum;
+            }
+
+            return 0;
+        }
+
+        /**
+         * Converts a numerical index value to a qualitative assessment.
+         * @param {number} value - The index value to assess.
+         * @param {string} metricType - The type of metric ('dominance', 'sociability', 'resolutivity').
+         * @returns {Object} An object with the assessment text and corresponding CSS class.
+         */
+        function getQualitativeValue(value, metricType) {
+            let text = '';
+            let className = '';
+
+            // Etiquetas para cada métrica
+            const labels = {
+                dominance: {
+                    high: 'Excesiva presencia de líderes',
+                    mediumHigh: 'Tendencia a dar órdenes',
+                    average: 'Equilibrado',
+                    mediumLow: 'Tendencia a seguir órdenes',
+                    low: 'Excesiva presencia de seguidores'
+                },
+                sociability: {
+                    high: 'Muy sociable',
+                    mediumHigh: 'Sociable',
+                    average: 'Equilibrado',
+                    mediumLow: 'Baja sociabilidad',
+                    low: 'Muy baja sociabilidad'
+                },
+                resolutivity: {
+                    high: 'Muy focalizado',
+                    mediumHigh: 'Focalizado',
+                    average: 'Equilibrado',
+                    mediumLow: 'Disperso',
+                    low: 'Muy disperso'
+                }
+            };
+            
+            if (value >= 0.8) {
+                text = labels[metricType].high;
+                className = 'excellent';
+            } else if (value >= 0.2) {
+                text = labels[metricType].mediumHigh;
+                className = 'good';
+            } else if (value >= -0.2 && value < 0.2) {
+                text = labels[metricType].average;
+                className = 'average';
+            } else if (value < -0.2 && value >= -0.8) {
+                text = labels[metricType].mediumLow;
+                className = 'poor';
+            } else {
+                text = labels[metricType].low;
+                className = 'poor';
+            }
+
+            return { text, class: className };
+        }
+
+
+        /**
+         * Calculates and displays team metrics.
+         */
+        function showTeamMetrics() {
+            if (membersData.length === 0) {
+                teamMetricsDiv.classList.add('hidden');
+                return;
+            }
+
+            // Calcular los índices
+            const dominanceIndex = calculateIndex(membersData, 'dominance');
+            const sociabilityIndex = calculateIndex(membersData, 'sociability');
+            const resolutivityIndex = calculateIndex(membersData, 'resolutivity');
+
+            // Obtener las valoraciones cualitativas
+            const dominanceQualitative = getQualitativeValue(dominanceIndex, 'dominance');
+            const sociabilityQualitative = getQualitativeValue(sociabilityIndex, 'sociability');
+            const resolutivityQualitative = getQualitativeValue(resolutivityIndex, 'resolutivity');
+
+            // Actualizar el DOM
+            dominanceQualitativeDiv.textContent = dominanceQualitative.text;
+            dominanceQualitativeDiv.className = `quality-box ${dominanceQualitative.class}`;
+            dominanceValueDiv.textContent = `${dominanceIndex.toFixed(2)}`;
+
+            sociabilityQualitativeDiv.textContent = sociabilityQualitative.text;
+            sociabilityQualitativeDiv.className = `quality-box ${sociabilityQualitative.class}`;
+            sociabilityValueDiv.textContent = `${sociabilityIndex.toFixed(2)}`;
+
+            resolutivityQualitativeDiv.textContent = resolutivityQualitative.text;
+            resolutivityQualitativeDiv.className = `quality-box ${resolutivityQualitative.class}`;
+            resolutivityValueDiv.textContent = `${resolutivityIndex.toFixed(2)}`;
+
+            teamMetricsDiv.classList.remove('hidden');
+        }
+        
+        // Function to update the view of the metrics table (qualitative or quantitative)
+        function updateTableDisplay() {
+            individualMetricsTableBody.innerHTML = '';
+            membersData.forEach((member, index) => {
+                const tr = document.createElement('tr');
+                const role = getRecommendedRole(member);
+                const roleClass = role.isAlert ? 'text-red-500 font-bold' : '';
+                
+                let dominanceValue, sociabilityValue, resolutivityValue;
+                if (isQualitativeView) {
+                    dominanceValue = getMetricDescription('dominance', member.dominance);
+                    sociabilityValue = getMetricDescription('sociability', member.sociability);
+                    resolutivityValue = getMetricDescription('resolutivity', member.resolutivity);
+                } else {
+                    dominanceValue = (member.dominance * 3).toFixed(2);
+                    sociabilityValue = (member.sociability * 3).toFixed(2);
+                    resolutivityValue = (member.resolutivity * 3).toFixed(2);
+                }
+                const nameText = member.type === 'Automático' ? `Integrante Sugerido ${index + 1}` : member.name;
+                tr.innerHTML = `
+                    <td class="px-2 py-2 text-left font-medium">${nameText}</td>
+                    <td class="px-2 py-2">${dominanceValue}</td>
+                    <td class="px-2 py-2">${sociabilityValue}</td>
+                    <td class="px-2 py-2">${resolutivityValue}</td>
+                    <td class="px-2 py-2 ${roleClass}">${role.name}</td>
+                `;
+                individualMetricsTableBody.appendChild(tr);
+            });
+            individualMetricsTableContainer.classList.remove('hidden');
+        }
+
+        // Handler for the qualitative button
+        qualitativeBtn.addEventListener('click', () => {
+            isQualitativeView = true;
+            updateTableDisplay();
+            qualitativeBtn.classList.remove('bg-gray-200', 'text-blue-600');
+            qualitativeBtn.classList.add('bg-blue-600', 'text-white');
+            quantitativeBtn.classList.remove('bg-blue-600', 'text-white');
+            quantitativeBtn.classList.add('bg-gray-200', 'text-blue-600');
+        });
+
+        // Handler for the quantitative button
+        quantitativeBtn.addEventListener('click', () => {
+            isQualitativeView = false;
+            updateTableDisplay();
+            quantitativeBtn.classList.remove('bg-gray-200', 'text-blue-600');
+            quantitativeBtn.classList.add('bg-blue-600', 'text-white');
+            qualitativeBtn.classList.remove('bg-blue-600', 'text-white');
+            qualitativeBtn.classList.add('bg-gray-200', 'text-blue-600');
+        });
+
+        // Function to handle the state change of the application
+        function goToSection(section) {
+            welcomeSection.classList.add('hidden');
+            optionsSection.classList.add('hidden');
+            step1.classList.add('hidden');
+            step2.classList.add('hidden');
+            step3.classList.add('hidden');
+            manualInputSection.classList.add('hidden');
+
+            section.classList.remove('hidden');
+        }
+
+        // Click event handler for the 'Comenzar' button
+        startBtn.addEventListener('click', () => {
+            goToSection(optionsSection);
+        });
+        
+        // Click event handler for the 'Generar automáticamente' button
+        autoModeBtn.addEventListener('click', () => {
+            goToSection(step1);
+        });
+
+        // Click event handler for the 'Añadir manualmente' button
+        manualModeBtn.addEventListener('click', () => {
+             // Redirigir directamente al paso de entrada manual sin preguntar por el número de miembros
+            manualMembersCount = totalMembers;
+            membersAdded = 0;
+            membersData = [];
+            goToSection(manualInputSection);
+            updateManualInputSection();
+        });
+        
+        // Back buttons
+        backFromOptionsBtn.addEventListener('click', () => {
+            goToSection(welcomeSection);
+        });
+
+        backFromStep1Btn.addEventListener('click', () => {
+            goToSection(optionsSection);
+        });
+
+        // Click event handler for the 'Siguiente' button (Step 1)
+        nextStepBtn.addEventListener('click', () => {
+            const total = parseInt(totalMembersInput.value, 10);
+            if (isNaN(total) || total <= 0) {
+                showMessage('Por favor, introduce un número de miembros válido (mayor que 0).', messageBox);
+                return;
+            }
+            totalMembers = total;
+            hideMessage(messageBox);
+            goToSection(step2);
+            
+            step2Info.textContent = `Tienes ${totalMembers} miembros en total. ¿Cuántos quieres que se generen automáticamente?`;
+            autoMembersSelect.innerHTML = ''; // Clear previous options
+            const maxAuto = Math.floor(totalMembers * 0.5);
+            
+            for (let i = 0; i <= maxAuto; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i === 0 ? 'Ninguno' : i;
+                autoMembersSelect.appendChild(option);
+            }
+        });
+
+        // Click event handler for the 'Generar Miembros' button
+        generateBtn.addEventListener('click', () => {
+            autoMembersCount = parseInt(autoMembersSelect.value, 10);
+            manualMembersCount = totalMembers - autoMembersCount;
+
+            hideMessage(step2MessageBox);
+            membersList.innerHTML = '';
+            membersData = [];
+            
+            // Lógica de optimización para autocompletar
+            let tempMembersData = membersData;
+            for (let i = 0; i < autoMembersCount; i++) {
+                const bestRole = findBestRoleToAdd(tempMembersData);
+                const newMember = {
+                    name: 'Integrante Sugerido',
+                    type: 'Automático',
+                    dominance: bestRole.dominance / 3,
+                    sociability: bestRole.sociability / 3,
+                    resolutivity: bestRole.resolutivity / 3
+                };
+                tempMembersData.push(newMember);
+            }
+            membersData = tempMembersData;
+            
+            // Add automatic members to the list
+            membersData.slice(0, autoMembersCount).forEach((member, index) => {
+                const li = document.createElement('li');
+                li.className = 'p-3 rounded-lg bg-gray-100 flex justify-between items-center';
+                li.innerHTML = `<span>${member.name} ${index + 1}</span><span class="text-xs font-semibold text-blue-500 bg-blue-100 px-2 py-1 rounded-full">Sugerido</span>`;
+                membersList.appendChild(li);
+            });
+            
+            // Add manual members as placeholders in the list
+            for (let i = 1; i <= manualMembersCount; i++) {
+                const li = document.createElement('li');
+                li.className = 'p-3 rounded-lg bg-gray-100';
+                li.textContent = `Miembro Manual ${i}`;
+                membersList.appendChild(li);
+            }
+
+            // Show the "Continue" button if there are manual members
+            if (manualMembersCount > 0) {
+                continueBtn.classList.remove('hidden');
+                generateReportBtn.classList.add('hidden'); // Ocultar el botón del informe
+            } else {
+                continueBtn.classList.add('hidden');
+                showFinalResults();
+            }
+            
+            goToSection(step3);
+        });
+
+
+        // Click event handler for the 'Continuar' button
+        continueBtn.addEventListener('click', () => {
+            membersAdded = 0;
+            goToSection(manualInputSection);
+            updateManualInputSection();
+        });
+
+        // Function to update the manual input section
+        function updateManualInputSection() {
+            manualInputTitle.textContent = `Introduce Miembro Manual ${membersAdded + 1}`;
+            manualInputDesc.textContent = `Miembro ${membersAdded + 1} de ${manualMembersCount}.`;
+            memberNameInput.value = '';
+            // Reset the values of the new sliders
+            dominanceSlider1.value = 0;
+            dominanceSlider2.value = 0;
+            dominanceSlider3.value = 0;
+            sociabilitySlider1.value = 0;
+            sociabilitySlider2.value = 0;
+            sociabilitySlider3.value = 0;
+            resolutivitySlider1.value = 0;
+            resolutivitySlider2.value = 0;
+            resolutivitySlider3.value = 0;
+            hideMessage(manualMessageBox);
+        }
+
+        // Handler to add a manual member
+        addManualMemberBtn.addEventListener('click', () => {
+            const name = memberNameInput.value.trim();
+            if (!name) {
+                showMessage('Por favor, introduce un nombre para el miembro.', manualMessageBox);
+                return;
+            }
+
+            // Calculate the average of each dimension and normalize to -1, 1
+            const dominanceAvg = (parseInt(dominanceSlider1.value) + parseInt(dominanceSlider2.value) + parseInt(dominanceSlider3.value)) / 9;
+            const sociabilityAvg = (parseInt(sociabilitySlider1.value) + parseInt(sociabilitySlider2.value) + parseInt(sociabilitySlider3.value)) / 9;
+            const resolutivityAvg = (parseInt(resolutivitySlider1.value) + parseInt(resolutivitySlider2.value) + parseInt(resolutivitySlider3.value)) / 9;
+
+            const member = {
+                name: name,
+                type: 'Manual',
+                dominance: dominanceAvg,
+                sociability: sociabilityAvg,
+                resolutivity: resolutivityAvg
+            };
+            membersData.push(member);
+            membersAdded++;
+
+            if (membersAdded < manualMembersCount) {
+                updateManualInputSection();
+            } else {
+                // All manual members have been added, show final results
+                showFinalResults();
+            }
+        });
+
+        // Function to show the final results
+        function showFinalResults() {
+            goToSection(step3);
+            
+            // Update the members list
+            membersList.innerHTML = '';
+            membersData.forEach((member, index) => {
+                const li = document.createElement('li');
+                li.className = 'p-3 rounded-lg bg-gray-100 flex justify-between items-center';
+                const typeSpan = member.type === 'Automático'
+                    ? `<span class="text-xs font-semibold text-blue-500 bg-blue-100 px-2 py-1 rounded-full">Sugerido</span>`
+                    : `<span class="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded-full">Manual</span>`;
+                const nameText = member.type === 'Automático' ? `Integrante Sugerido ${index + 1}` : member.name;
+                li.innerHTML = `<span>${nameText}</span>${typeSpan}`;
+                membersList.appendChild(li);
+            });
+
+            // Update team metrics
+            showTeamMetrics();
+
+            // Show the individual metrics table
+            updateTableDisplay();
+
+            continueBtn.classList.add('hidden');
+            generateReportBtn.classList.remove('hidden'); // Show the report button
+            showMessage('¡El equipo ha sido creado!', copyMessageBox);
+        }
+
+        // Click event handler for the 'Atrás' button (Step 2)
+        backBtn.addEventListener('click', () => {
+            goToSection(step1);
+            hideMessage(step2MessageBox);
+        });
+
+        // Click event handler for the 'Reiniciar' button
+        resetBtn.addEventListener('click', () => {
+            goToSection(welcomeSection);
+            totalMembersInput.value = 5;
+            hideMessage(copyMessageBox);
+            teamMetricsDiv.classList.add('hidden');
+            individualMetricsTableContainer.classList.add('hidden');
+            generateReportBtn.classList.add('hidden'); // Hide the report button on reset
+        });
+
+        // Click event handler for the 'Generar Informe IA' button
+        generateReportBtn.addEventListener('click', () => {
+            if (membersData.length === 0) {
+                showMessage('No hay miembros para generar el informe. Por favor, crea un equipo primero.', copyMessageBox);
+                return;
+            }
+            
+            generateReportBtn.textContent = 'Generando...';
+            generateReportBtn.disabled = true;
+
+            const reportContent = generateAIReportContent();
+            
+            const element = document.createElement('div');
+            element.innerHTML = reportContent;
+            
+            // Set a timeout to allow the loading text to be visible
+            setTimeout(() => {
+                html2pdf()
+                    .from(element)
+                    .set({
+                        margin: [20, 15, 20, 15],
+                        filename: 'Informe_Proyecto_Magnes.pdf',
+                        html2canvas: { scale: 2 },
+                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    })
+                    .save()
+                    .finally(() => {
+                        generateReportBtn.textContent = 'Generar Informe IA';
+                        generateReportBtn.disabled = false;
+                        showMessage('¡Informe PDF generado con éxito!', copyMessageBox);
+                    });
+            }, 500);
+        });
+
+        // Function to generate the AI report content as a string
+        function generateAIReportContent() {
+            // Calcular los índices del equipo
+            const dominanceIndex = calculateIndex(membersData, 'dominance');
+            const sociabilityIndex = calculateIndex(membersData, 'sociability');
+            const resolutivityIndex = calculateIndex(membersData, 'resolutivity');
+
+            const dominanceQualitative = getQualitativeValue(dominanceIndex, 'dominance').text;
+            const sociabilityQualitative = getQualitativeValue(sociabilityIndex, 'sociability').text;
+            const resolutivityQualitative = getQualitativeValue(resolutivityIndex, 'resolutivity').text;
+
+            let dominanceAnalysis, sociabilityAnalysis, resolutivityAnalysis;
+
+            // Análisis de Dominancia
+            if (dominanceIndex > 0.5) {
+                dominanceAnalysis = `Este equipo muestra una clara tendencia a la ${dominanceQualitative.toLowerCase()}, lo que sugiere una estructura de liderazgo definida. Esto puede facilitar la toma de decisiones rápidas, pero también requiere una gestión cuidadosa para asegurar que las voces de los miembros con menor dominancia sean escuchadas.`;
+            } else if (dominanceIndex < -0.5) {
+                dominanceAnalysis = `El equipo tiende a ser ${dominanceQualitative.toLowerCase()}, lo que podría fomentar un entorno colaborativo y de apoyo mutuo. Sin embargo, puede ser un desafío para la dirección y la toma de decisiones, por lo que es vital asignar roles de liderazgo claros para ciertas tareas.`;
+            } else {
+                dominanceAnalysis = `Con un índice de ${dominanceQualitative.toLowerCase()}, este equipo tiene un buen equilibrio de líderes y seguidores, lo que le permite ser flexible y adaptarse a diferentes situaciones. Es un grupo ideal para tareas que requieren colaboración en todos los niveles.`;
+            }
+
+            // Análisis de Sociabilidad
+            if (sociabilityIndex > 0.5) {
+                sociabilityAnalysis = `El equipo es ${sociabilityQualitative.toLowerCase()}, lo que indica una fuerte cohesión social. Esto facilita la comunicación, la resolución de conflictos y el trabajo en equipo, creando un ambiente de apoyo.`;
+            } else if (sociabilityIndex < -0.5) {
+                sociabilityAnalysis = `El índice de ${sociabilityQualitative.toLowerCase()} podría indicar un enfoque más orientado a la tarea que a las relaciones interpersonales. Aunque esto puede ser eficiente para proyectos específicos, es crucial fomentar la comunicación abierta para evitar malentendidos.`;
+            } else {
+                sociabilityAnalysis = `Con un índice de ${sociabilityQualitative.toLowerCase()}, el equipo tiene una buena combinación de miembros sociables y otros más centrados en la tarea. Esto permite un equilibrio productivo entre las relaciones y la eficiencia.`;
+            }
+
+            // Análisis de Resolutividad
+            if (resolutivityIndex > 0.5) {
+                resolutivityAnalysis = `El equipo es ${resolutivityQualitative.toLowerCase()}, lo que se traduce en una alta orientación a la finalización de tareas. Este grupo se caracteriza por la diligencia y la responsabilidad, ideal para proyectos con plazos estrictos.`;
+            } else if (resolutivityIndex < -0.5) {
+                resolutivityAnalysis = `El índice de ${resolutivityQualitative.toLowerCase()} sugiere que el equipo podría tener dificultades para mantenerse enfocado. Para mejorar la productividad, se recomienda establecer objetivos claros y seguimiento regular.`;
+            } else {
+                resolutivityAnalysis = `Este equipo muestra un índice de ${resolutivityQualitative.toLowerCase()}, lo que significa que el equipo es flexible para la tarea y no está excesivamente focalizado. Esto es ideal para las tareas que requieren explorar y generar nuevas ideas.`;
+            }
+
+            let reportHtml = `
+                <div class="report-container">
+                    <div class="report-header">
+                        <h1 class="report-title">Análisis de Composición del Equipo</h1>
+                        <p class="report-subtitle">Generado por Magnes AI</p>
+                    </div>
+
+                    <div class="report-divider"></div>
+
+                    <h2 class="report-section-title">Análisis General del Equipo</h2>
+                    <p>El modelo TRIAD (Tracking Roles In and Across Domains) ofrece una propuesta práctica que ha simplificado los múltiples roles existentes en la literatura hasta llegar a la conclusión que realmente solo podemos llegar a diferenciar 13 roles diferenciados. Diseñado por Driskell, Driskell, Burke y Salas (2017), el modelo parte de un enfoque dimensional para definir el comportamiento de los roles en equipos de trabajo a través de tres grandes ejes conductuales: dominancia, sociabilidad y orientación a la tarea.</p>
+                    <p>Algunas personas aportan dirección y estructura (alta dominancia), otras cohesionan y facilitan las relaciones (alta sociabilidad), y otras impulsan la tarea hasta su ejecución final (alta orientación a la tarea). La suma de roles favorece que el equipo disponga de funciones primarias que conducen a la efectividad grupal: en etapas iniciales destacarán los roles de liderazgo, planificación, coordinación, posteriormente en una etapa intermedia habrán roles capaces de monitorear al equipo, resolver problemas, cohesionar, ejecución, e incluso en etapas finales capacidad de cierre. Sin embargo, el modelo también contempla que en ocasiones se pueda romper el equilibrio, pues también puede ser necesario adaptar de forma dinámica la composición a la tarea del equipo: habrán situaciones en las que sea necesario que unas dimensiones del modelo se encuentren en mayor proporción, favoreciendo así un sistema adaptado a las demandas de la tarea.</p>
+                    <p>El algoritmo permite hacer recomendaciones de composición basadas en el conjunto de roles del modelo, facilitando:
+                    <ul>
+                    <li>Comprobar el nivel de equilibrio de funciones.</li>
+                    <li>La detección de redundancias (varios miembros tratando de asumir el mismo rol).</li>
+                    <li>Detectar vacíos funcionales (roles que nadie está cubriendo).</li>
+                    <li>Capacidad de previsión de roles que van a ser potencialmente conflictivos.</li>
+                    <li>Ver el grado de ajuste entre el tipo de tarea y la composición de equipo.</li>
+                    </ul></p>
+
+                    <ul class="report-summary-list">
+                        <li class="report-summary-item"><strong>Dominancia:</strong> ${dominanceQualitative} (${dominanceIndex.toFixed(2)})</li>
+                        <li class="report-summary-item"><strong>Sociabilidad:</strong> ${sociabilityQualitative} (${sociabilityIndex.toFixed(2)})</li>
+                        <li class="report-summary-item"><strong>Resolutividad:</strong> ${resolutivityQualitative} (${resolutivityIndex.toFixed(2)})</li>
+                    </ul>
+
+                    <h3 class="report-section-title">Análisis de los Índices Clave</h3>
+                    <div class="space-y-4">
+                      <div class="report-card">
+                          <h4 class="report-card-title">Dominancia</h4>
+                          <p>${dominanceAnalysis}</p>
+                      </div>
+                      <div class="report-card">
+                          <h4 class="report-card-title">Sociabilidad</h4>
+                          <p>${sociabilityAnalysis}</p>
+                      </div>
+                      <div class="report-card">
+                          <h4 class="report-card-title">Resolutividad</h4>
+                          <p>${resolutivityAnalysis}</p>
+                      </div>
+                    </div>
+
+                    <h2 class="report-section-title">Análisis Individual de Miembros</h2>
+            `;
+
+            membersData.forEach((member, index) => {
+                const role = getRecommendedRole(member);
+                const name = member.type === 'Automático' ? `Integrante Sugerido ${index + 1}` : member.name;
+                const roleText = role.isAlert ? `El miembro parece tener un rol problemático: <strong>${role.name}</strong>.` : `El rol más compatible es: <strong>${role.name}</strong>.`;
+
+                reportHtml += `
+                    <div class="report-card">
+                        <h3 class="report-card-title">${name}</h3>
+                        <p><strong>Tipo:</strong> ${member.type}</p>
+                        <ul style="list-style-type: none; padding-left: 0; margin-top: 10px;">
+                            <li><strong>Dominancia:</strong> ${getMetricDescription('dominance', member.dominance)}</li>
+                            <li><strong>Sociabilidad:</strong> ${getMetricDescription('sociability', member.sociability)}</li>
+                            <li><strong>Resolutividad:</strong> ${getMetricDescription('resolutivity', member.resolutivity)}</li>
+                        </ul>
+                        <p><strong>Análisis de Rol:</strong> ${roleText}</p>
+                    </div>
+                `;
+            });
+
+            reportHtml += `
+                <div class="report-divider"></div>
+                <p style="text-align: center; font-size: 12px; color: #9ca3af; margin-top: 10px;">Fin del informe. Este análisis se basa en los datos proporcionados y sirve como guía. Las dinámicas de equipo pueden variar.</p>
+                </div>
+            `;
+
+            return reportHtml;
+        }
+    </script>
+
+</body>
+</html>
