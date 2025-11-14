@@ -755,13 +755,13 @@
 
             // Fórmulas revisadas para Dominancia, Sociabilidad y Resolutividad
             if (metricName === 'resolutivity') {
-                return (posSum - negSum) / metrics.length;
+                return (posSum - negSum) / (metrics.length);
             }
             if (metricName === 'dominance') {
-                return (posSum - negSum) / metrics.length;
+                return (posSum - negSum) / (metrics.length);
             }
             if (metricName === 'sociability') {
-                return (posSum - negSum) / metrics.length;
+                return (posSum - negSum) / (metrics.length);
             }
 
             return 0;
