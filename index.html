@@ -802,7 +802,7 @@
                 }
             };
             
-            if (value >= 0.8) {
+            if (value >= 0.7) {
                 text = labels[metricType].high;
                 className = 'excellent';
             } else if (value > 0.2) {
@@ -811,7 +811,7 @@
             } else if (value >= -0.2 && value <= 0.2) {
                 text = labels[metricType].average;
                 className = 'average';
-            } else if (value < -0.2 && value >= -0.8) {
+            } else if (value < -0.2 && value > -0.7) {
                 text = labels[metricType].mediumLow;
                 className = 'poor';
             } else {
