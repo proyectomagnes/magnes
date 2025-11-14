@@ -805,10 +805,10 @@
             if (value >= 0.8) {
                 text = labels[metricType].high;
                 className = 'excellent';
-            } else if (value >= 0.2) {
+            } else if (value > 0.2) {
                 text = labels[metricType].mediumHigh;
                 className = 'good';
-            } else if (value >= -0.2 && value < 0.2) {
+            } else if (value >= -0.2 && value <= 0.2) {
                 text = labels[metricType].average;
                 className = 'average';
             } else if (value < -0.2 && value >= -0.8) {
