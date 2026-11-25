@@ -240,7 +240,7 @@
                   <h2 class="text-xl font-bold text-gray-800 mb-4 text-center">Índices del Equipo</h2>
                   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                       <div class="flex flex-col items-center p-2">
-                        <h3 class="font-bold text-gray-700 mb-1">Dominancia</h3>
+                        <h3 class="font-bold text-gray-700 mb-1">Influencia</h3>
                         <div class="quality-box" id="dominanceQualitative"></div>
                         <p class="text-gray-600 mt-1 text-sm" id="dominanceValue"></p>
                       </div>
@@ -268,7 +268,7 @@
                       <thead>
                           <tr>
                               <th class="rounded-tl-lg">Nombre</th>
-                              <th>Dominancia</th>
+                              <th>Influencia</th>
                               <th>Sociabilidad</th>
                               <th>Orientación a la Tarea</th>
                               <th class="rounded-tr-lg">Rol</th>
@@ -297,9 +297,9 @@
                 <div id="member-form" class="w-full space-y-8">
                     <input type="text" id="memberNameInput" placeholder="Nombre del Miembro" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-200">
                     
-                    <!-- Sliders de Dominancia -->
+                    <!-- Sliders de Influencia -->
                     <div>
-                        <h3 class="block text-gray-700 font-semibold mb-4 text-lg">Dominancia:</h3>
+                        <h3 class="block text-gray-700 font-semibold mb-4 text-lg">Influencia:</h3>
                         <div class="space-y-4">
                             <!-- Item 1 -->
                             <div>
@@ -753,7 +753,7 @@
             const totalSum = posSum + negSum;
             if (totalSum === 0) return 0;
 
-            // Fórmulas revisadas para Dominancia, Sociabilidad y Orientación a la Tarea
+            // Fórmulas revisadas para Influencia, Sociabilidad y Orientación a la Tarea
             if (metricName === 'resolutivity') {
                 return (posSum - negSum) / (metrics.length);
             }
@@ -1173,9 +1173,9 @@
 
             let dominanceAnalysis, sociabilityAnalysis, resolutivityAnalysis;
 
-            // Análisis de Dominancia
+            // Análisis de Influencia
             if (dominanceIndex > 0.5) {
-                dominanceAnalysis = `Este equipo muestra una clara tendencia a la ${dominanceQualitative.toLowerCase()}, lo que sugiere una estructura de liderazgo definida. Esto puede facilitar la toma de decisiones rápidas, pero también requiere una gestión cuidadosa para asegurar que las voces de los miembros con menor dominancia sean escuchadas.`;
+                dominanceAnalysis = `Este equipo muestra una clara tendencia a la ${dominanceQualitative.toLowerCase()}, lo que sugiere una estructura de liderazgo definida. Esto puede facilitar la toma de decisiones rápidas, pero también requiere una gestión cuidadosa para asegurar que las voces de los miembros con menor Influencia sean escuchadas.`;
             } else if (dominanceIndex < -0.5) {
                 dominanceAnalysis = `El equipo tiende a ser ${dominanceQualitative.toLowerCase()}, lo que podría fomentar un entorno colaborativo y de apoyo mutuo. Sin embargo, puede ser un desafío para la dirección y la toma de decisiones, por lo que es vital asignar roles de liderazgo claros para ciertas tareas.`;
             } else {
@@ -1210,8 +1210,8 @@
                     <div class="report-divider"></div>
 
                     <h2 class="report-section-title">Análisis General del Equipo</h2>
-                    <p>El modelo TRIAD (Tracking Roles In and Across Domains) ofrece una propuesta práctica que ha simplificado los múltiples roles existentes en la literatura hasta llegar a la conclusión que realmente solo podemos llegar a diferenciar 13 roles diferenciados. Diseñado por Driskell, Driskell, Burke y Salas (2017), el modelo parte de un enfoque dimensional para definir el comportamiento de los roles en equipos de trabajo a través de tres grandes ejes conductuales: dominancia, sociabilidad y orientación a la tarea.</p>
-                    <p>Algunas personas aportan dirección y estructura (alta dominancia), otras cohesionan y facilitan las relaciones (alta sociabilidad), y otras impulsan la tarea hasta su ejecución final (alta orientación a la tarea). La suma de roles favorece que el equipo disponga de funciones primarias que conducen a la efectividad grupal: en etapas iniciales destacarán los roles de liderazgo, planificación, coordinación, posteriormente en una etapa intermedia habrán roles capaces de monitorear al equipo, resolver problemas, cohesionar, ejecución, e incluso en etapas finales capacidad de cierre. Sin embargo, el modelo también contempla que en ocasiones se pueda romper el equilibrio, pues también puede ser necesario adaptar de forma dinámica la composición a la tarea del equipo: habrán situaciones en las que sea necesario que unas dimensiones del modelo se encuentren en mayor proporción, favoreciendo así un sistema adaptado a las demandas de la tarea.</p>
+                    <p>El modelo TRIAD (Tracking Roles In and Across Domains) ofrece una propuesta práctica que ha simplificado los múltiples roles existentes en la literatura hasta llegar a la conclusión que realmente solo podemos llegar a diferenciar 13 roles diferenciados. Diseñado por Driskell, Driskell, Burke y Salas (2017), el modelo parte de un enfoque dimensional para definir el comportamiento de los roles en equipos de trabajo a través de tres grandes ejes conductuales: Influencia, sociabilidad y orientación a la tarea.</p>
+                    <p>Algunas personas aportan dirección y estructura (alta Influencia), otras cohesionan y facilitan las relaciones (alta sociabilidad), y otras impulsan la tarea hasta su ejecución final (alta orientación a la tarea). La suma de roles favorece que el equipo disponga de funciones primarias que conducen a la efectividad grupal: en etapas iniciales destacarán los roles de liderazgo, planificación, coordinación, posteriormente en una etapa intermedia habrán roles capaces de monitorear al equipo, resolver problemas, cohesionar, ejecución, e incluso en etapas finales capacidad de cierre. Sin embargo, el modelo también contempla que en ocasiones se pueda romper el equilibrio, pues también puede ser necesario adaptar de forma dinámica la composición a la tarea del equipo: habrán situaciones en las que sea necesario que unas dimensiones del modelo se encuentren en mayor proporción, favoreciendo así un sistema adaptado a las demandas de la tarea.</p>
                     <p>El algoritmo permite hacer recomendaciones de composición basadas en el conjunto de roles del modelo, facilitando:
                     <ul>
                     <li>Comprobar el nivel de equilibrio de funciones.</li>
@@ -1222,7 +1222,7 @@
                     </ul></p>
 
                     <ul class="report-summary-list">
-                        <li class="report-summary-item"><strong>Dominancia:</strong> ${dominanceQualitative} (${dominanceIndex.toFixed(2)})</li>
+                        <li class="report-summary-item"><strong>Influencia:</strong> ${dominanceQualitative} (${dominanceIndex.toFixed(2)})</li>
                         <li class="report-summary-item"><strong>Sociabilidad:</strong> ${sociabilityQualitative} (${sociabilityIndex.toFixed(2)})</li>
                         <li class="report-summary-item"><strong>Orientación a la Tarea:</strong> ${resolutivityQualitative} (${resolutivityIndex.toFixed(2)})</li>
                     </ul>
@@ -1230,7 +1230,7 @@
                     <h3 class="report-section-title">Análisis de los Índices Clave</h3>
                     <div class="space-y-4">
                       <div class="report-card">
-                          <h4 class="report-card-title">Dominancia</h4>
+                          <h4 class="report-card-title">Influencia</h4>
                           <p>${dominanceAnalysis}</p>
                       </div>
                       <div class="report-card">
@@ -1256,7 +1256,7 @@
                         <h3 class="report-card-title">${name}</h3>
                         <p><strong>Tipo:</strong> ${member.type}</p>
                         <ul style="list-style-type: none; padding-left: 0; margin-top: 10px;">
-                            <li><strong>Dominancia:</strong> ${getMetricDescription('dominance', member.dominance)}</li>
+                            <li><strong>Influencia:</strong> ${getMetricDescription('dominance', member.dominance)}</li>
                             <li><strong>Sociabilidad:</strong> ${getMetricDescription('sociability', member.sociability)}</li>
                             <li><strong>Orientación a la Tarea:</strong> ${getMetricDescription('resolutivity', member.resolutivity)}</li>
                         </ul>
