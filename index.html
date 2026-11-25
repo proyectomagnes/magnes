@@ -318,7 +318,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="dominanceSlider1" min="-3" max="3" value="0">
+                                    <input type="range" id="dominanceSlider1" min="-3" max="3" step="0.01" value="0">
                                 </div>
                             </div>
                             <!-- Item 2 -->
@@ -338,7 +338,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="dominanceSlider2" min="-3" max="3" value="0">
+                                    <input type="range" id="dominanceSlider1" min="-3" max="3" step="0.01" value="0">
                                 </div>
                             </div>
                             <!-- Item 3 -->
@@ -358,7 +358,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="dominanceSlider3" min="-3" max="3" value="0">
+                                    <input type="range" id="dominanceSlider1" min="-3" max="3" step="0.01" value="0">
                                 </div>
                             </div>
                         </div>
@@ -1060,9 +1060,9 @@
             }
 
             // Calculate the average of each dimension and normalize to -1, 1
-            const dominanceAvg = (parseInt(dominanceSlider1.value) + parseInt(dominanceSlider2.value) + parseInt(dominanceSlider3.value)) / 9;
-            const sociabilityAvg = (parseInt(sociabilitySlider1.value) + parseInt(sociabilitySlider2.value) + parseInt(sociabilitySlider3.value)) / 9;
-            const resolutivityAvg = (parseInt(resolutivitySlider1.value) + parseInt(resolutivitySlider2.value) + parseInt(resolutivitySlider3.value)) / 9;
+            const dominanceAvg = (parseFloat(dominanceSlider1.value) + parseFloat(dominanceSlider2.value) + parseFloat(dominanceSlider3.value)) / 9;
+const sociabilityAvg = (parseFloat(sociabilitySlider1.value) + parseFloat(sociabilitySlider2.value) + parseFloat(sociabilitySlider3.value)) / 9;
+const resolutivityAvg = (parseFloat(resolutivitySlider1.value) + parseFloat(resolutivitySlider2.value) + parseFloat(resolutivitySlider3.value)) / 9;
 
             const member = {
                 name: name,
