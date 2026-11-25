@@ -250,7 +250,7 @@
                         <p class="text-gray-600 mt-1 text-sm" id="sociabilityValue"></p>
                       </div>
                       <div class="flex flex-col items-center p-2">
-                        <h3 class="font-bold text-gray-700 mb-1">Resolutividad</h3>
+                        <h3 class="font-bold text-gray-700 mb-1">Orientación a la Tarea</h3>
                         <div class="quality-box" id="resolutivityQualitative"></div>
                         <p class="text-gray-600 mt-1 text-sm" id="resolutivityValue"></p>
                       </div>
@@ -270,7 +270,7 @@
                               <th class="rounded-tl-lg">Nombre</th>
                               <th>Dominancia</th>
                               <th>Sociabilidad</th>
-                              <th>Resolutividad</th>
+                              <th>Orientación a la Tarea</th>
                               <th class="rounded-tr-lg">Rol</th>
                           </tr>
                       </thead>
@@ -431,9 +431,9 @@
                         </div>
                     </div>
 
-                    <!-- Sliders de Resolutividad -->
+                    <!-- Sliders de Orientación a la Tarea -->
                     <div>
-                        <h3 class="block text-gray-700 font-semibold mb-4 text-lg">Resolutividad:</h3>
+                        <h3 class="block text-gray-700 font-semibold mb-4 text-lg">Orientación a la Tarea:</h3>
                         <div class="space-y-4">
                             <!-- Item 1 -->
                             <div>
@@ -753,7 +753,7 @@
             const totalSum = posSum + negSum;
             if (totalSum === 0) return 0;
 
-            // Fórmulas revisadas para Dominancia, Sociabilidad y Resolutividad
+            // Fórmulas revisadas para Dominancia, Sociabilidad y Orientación a la Tarea
             if (metricName === 'resolutivity') {
                 return (posSum - negSum) / (metrics.length);
             }
@@ -1191,7 +1191,7 @@
                 sociabilityAnalysis = `Con un índice de ${sociabilityQualitative.toLowerCase()}, el equipo tiene una buena combinación de miembros sociables y otros más centrados en la tarea. Esto permite un equilibrio productivo entre las relaciones y la eficiencia.`;
             }
 
-            // Análisis de Resolutividad
+            // Análisis de Orientación a la Tarea
             if (resolutivityIndex > 0.5) {
                 resolutivityAnalysis = `El equipo es ${resolutivityQualitative.toLowerCase()}, lo que se traduce en una alta orientación a la finalización de tareas. Este grupo se caracteriza por la diligencia y la responsabilidad, ideal para proyectos con plazos estrictos.`;
             } else if (resolutivityIndex < -0.5) {
@@ -1224,7 +1224,7 @@
                     <ul class="report-summary-list">
                         <li class="report-summary-item"><strong>Dominancia:</strong> ${dominanceQualitative} (${dominanceIndex.toFixed(2)})</li>
                         <li class="report-summary-item"><strong>Sociabilidad:</strong> ${sociabilityQualitative} (${sociabilityIndex.toFixed(2)})</li>
-                        <li class="report-summary-item"><strong>Resolutividad:</strong> ${resolutivityQualitative} (${resolutivityIndex.toFixed(2)})</li>
+                        <li class="report-summary-item"><strong>Orientación a la Tarea:</strong> ${resolutivityQualitative} (${resolutivityIndex.toFixed(2)})</li>
                     </ul>
 
                     <h3 class="report-section-title">Análisis de los Índices Clave</h3>
@@ -1238,7 +1238,7 @@
                           <p>${sociabilityAnalysis}</p>
                       </div>
                       <div class="report-card">
-                          <h4 class="report-card-title">Resolutividad</h4>
+                          <h4 class="report-card-title">Orientación a la Tarea</h4>
                           <p>${resolutivityAnalysis}</p>
                       </div>
                     </div>
@@ -1258,7 +1258,7 @@
                         <ul style="list-style-type: none; padding-left: 0; margin-top: 10px;">
                             <li><strong>Dominancia:</strong> ${getMetricDescription('dominance', member.dominance)}</li>
                             <li><strong>Sociabilidad:</strong> ${getMetricDescription('sociability', member.sociability)}</li>
-                            <li><strong>Resolutividad:</strong> ${getMetricDescription('resolutivity', member.resolutivity)}</li>
+                            <li><strong>Orientación a la Tarea:</strong> ${getMetricDescription('resolutivity', member.resolutivity)}</li>
                         </ul>
                         <p><strong>Análisis de Rol:</strong> ${roleText}</p>
                     </div>
