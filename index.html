@@ -120,7 +120,6 @@
 
       /* =========================================================
          ESTILOS EDITORIALES LIMPIOS PARA EL INFORME PDF
-         (Sin tarjetas complejas ni barras superpuestas para evitar cortes)
          ========================================================= */
       .report-container {
           font-family: 'Inter', sans-serif;
@@ -168,6 +167,12 @@
           break-after: avoid;
       }
 
+      .report-section-page-break {
+          page-break-before: always;
+          break-before: page;
+          margin-top: 0;
+      }
+
       .report-p {
           margin: 0 0 8px 0;
           text-align: left;
@@ -182,7 +187,7 @@
           margin-bottom: 4px;
       }
 
-      /* Tablas estándar paginables nativamente */
+      /* Tablas estándar para resumen de equipo y tareas */
       .report-table {
           width: 100%;
           border-collapse: collapse;
@@ -210,6 +215,30 @@
       .report-table tr {
           page-break-inside: avoid;
           break-inside: avoid;
+      }
+
+      /* Bloques ligeros para el listado individual (evita truncado de tablas largas) */
+      .member-item {
+          padding: 7px 0;
+          border-bottom: 1px solid #e2e8f0;
+          page-break-inside: avoid;
+          break-inside: avoid;
+      }
+
+      .member-item-header {
+          font-size: 10px;
+          margin-bottom: 2px;
+      }
+
+      .member-item-metrics {
+          font-size: 8.8px;
+          color: #374151;
+          margin-bottom: 2px;
+      }
+
+      .member-item-desc {
+          font-size: 8.6px;
+          color: #4b5563;
       }
 
       .report-alert-block {
@@ -1118,7 +1147,7 @@
         });
 
         // =========================================================
-        // GENERADOR DE INFORME DIAGNÓSTICO EDITORIAL (SIN TARJETAS)
+        // GENERADOR DE INFORME DIAGNÓSTICO EDITORIAL (PAGINACIÓN SEGURA)
         // =========================================================
 
         generateReportBtn.addEventListener('click', () => {
@@ -1479,20 +1508,9 @@
                 `;
             }
 
-            // Sección 4: Tabla Individual Limpia
+            // Sección 4: Listado Individual Paginable (sin tabla para evitar truncado)
             reportHtml += `
-                <h2 class="report-section-title">4. Perfil Individual de los Integrantes</h2>
-                <table class="report-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 18%;">Integrante</th>
-                            <th style="width: 15%;">Directividad</th>
-                            <th style="width: 15%;">Sociabilidad</th>
-                            <th style="width: 15%;">Orient. Tarea</th>
-                            <th style="width: 37%;">Rol Asignado y Función Conductual</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <h2 class="report-section-title report-section-page-break">4. Perfil Individual de los Integrantes (${membersData.length} miembros)</h2>
             `;
 
             membersData.forEach((member, index) => {
@@ -1511,22 +1529,24 @@
                 const roleTitleStyle = role.isAlert ? 'color: #dc2626;' : 'color: #1e3a8a;';
 
                 reportHtml += `
-                    <tr>
-                        <td><strong>${name}</strong><br><span style="font-size: 7.5px; color: #6b7280;">(${originLabel})</span></td>
-                        <td>${domDesc}<br><span style="color: #6b7280;">(${domVal})</span></td>
-                        <td>${socDesc}<br><span style="color: #6b7280;">(${socVal})</span></td>
-                        <td>${resDesc}<br><span style="color: #6b7280;">(${resVal})</span></td>
-                        <td>
-                            <strong style="${roleTitleStyle}">${role.name}${role.isAlert ? ' [Alerta]' : ''}</strong><br>
-                            <span style="color: #374151;">${role.desc}</span>
-                        </td>
-                    </tr>
+                    <div class="member-item">
+                        <div class="member-item-header">
+                            <strong>${index + 1}. ${name}</strong> <span style="font-size: 8.5px; color: #6b7280;">(${originLabel})</span> &mdash; 
+                            <strong style="${roleTitleStyle}">Rol: ${role.name}${role.isAlert ? ' [Alerta]' : ''}</strong>
+                        </div>
+                        <div class="member-item-metrics">
+                            <strong>Directividad:</strong> ${domDesc} (${domVal}) &nbsp;|&nbsp; 
+                            <strong>Sociabilidad:</strong> ${socDesc} (${socVal}) &nbsp;|&nbsp; 
+                            <strong>Orientación a la Tarea:</strong> ${resDesc} (${resVal})
+                        </div>
+                        <div class="member-item-desc">
+                            <em>Función conductual:</em> ${role.desc}
+                        </div>
+                    </div>
                 `;
             });
 
             reportHtml += `
-                    </tbody>
-                </table>
                 <div class="report-footer">
                     Informe generado automáticamente por Proyecto Magnes · Referencia científica: Driskell, T., Driskell, J. E., Burke, C. S., & Salas, E. (2017). Team Roles: A Review and Integration. Small Group Research.
                 </div>
