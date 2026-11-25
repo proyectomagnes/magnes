@@ -86,7 +86,7 @@
           border-radius: 50%;
       }
 
-      /* Estilos para la tabla */
+      /* Estilos para la tabla de la interfaz */
       .metrics-table th, .metrics-table td {
           padding: 0.75rem;
           text-align: center;
@@ -103,7 +103,7 @@
           border-bottom: none;
       }
       
-      /* Estilos para los nuevos índices */
+      /* Estilos para los índices en pantalla */
       .quality-box {
           padding: 0.25rem 0.75rem;
           border-radius: 9999px;
@@ -113,28 +113,26 @@
           margin-bottom: 0.5rem;
           display: inline-block;
       }
-      .quality-box.excellent { background-color: #10b981; } /* verde */
-      .quality-box.good { background-color: #3b82f6; } /* azul */
-      .quality-box.average { background-color: #eab308; } /* amarillo */
-      .quality-box.poor { background-color: #ef4444; } /* rojo */
+      .quality-box.excellent { background-color: #10b981; }
+      .quality-box.good { background-color: #3b82f6; }
+      .quality-box.average { background-color: #eab308; }
+      .quality-box.poor { background-color: #ef4444; }
 
       /* =========================================================
-         ESTILOS AVANZADOS PARA EL INFORME PDF (PROYECTO MAGNES)
+         ESTILOS EDITORIALES LIMPIOS PARA EL INFORME PDF
+         (Sin tarjetas complejas ni barras superpuestas para evitar cortes)
          ========================================================= */
       .report-container {
           font-family: 'Inter', sans-serif;
           color: #1f2937;
-          font-size: 9.5px;
-          line-height: 1.48;
-          padding: 10px 15px;
+          font-size: 10px;
+          line-height: 1.5;
+          padding: 8px 12px;
       }
 
       .report-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          border-bottom: 2px solid #2563eb;
-          padding-bottom: 10px;
+          border-bottom: 2px solid #1e3a8a;
+          padding-bottom: 8px;
           margin-bottom: 14px;
       }
 
@@ -142,225 +140,100 @@
           font-size: 18px;
           font-weight: 700;
           color: #111827;
-          margin: 0;
+          margin: 0 0 2px 0;
       }
 
       .report-subtitle {
-          color: #2563eb;
-          font-size: 9px;
+          color: #1e40af;
+          font-size: 9.5px;
           font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          margin: 2px 0 0 0;
+          margin: 0 0 4px 0;
       }
 
       .report-meta {
-          text-align: right;
           font-size: 8.5px;
-          color: #6b7280;
+          color: #4b5563;
+          margin: 0;
       }
 
       .report-section-title {
           font-size: 12.5px;
           font-weight: 700;
           color: #1e3a8a;
-          border-left: 3px solid #2563eb;
-          padding-left: 8px;
-          margin-top: 18px;
-          margin-bottom: 10px;
+          border-bottom: 1px solid #cbd5e1;
+          padding-bottom: 3px;
+          margin-top: 16px;
+          margin-bottom: 8px;
           page-break-after: avoid;
           break-after: avoid;
       }
 
-      .report-intro-box {
-          background-color: #f8fafc;
-          border: 1px solid #e2e8f0;
-          border-radius: 6px;
-          padding: 10px 12px;
-          margin-bottom: 14px;
-          color: #334155;
-          font-size: 8.8px;
-          page-break-inside: avoid;
+      .report-p {
+          margin: 0 0 8px 0;
+          text-align: left;
       }
 
-      /* Grid de KPIs del equipo */
-      .report-kpi-grid {
-          display: flex;
-          justify-content: space-between;
-          gap: 10px;
-          margin-bottom: 14px;
-          page-break-inside: avoid;
+      .report-list {
+          margin: 0 0 10px 0;
+          padding-left: 16px;
       }
 
-      .report-kpi-card {
-          flex: 1;
-          background: #ffffff;
-          border: 1px solid #e5e7eb;
-          border-radius: 6px;
-          padding: 10px;
-          text-align: center;
-      }
-
-      .report-kpi-label {
-          font-size: 9px;
-          font-weight: 700;
-          color: #4b5563;
-          text-transform: uppercase;
+      .report-list li {
           margin-bottom: 4px;
       }
 
-      .report-kpi-value {
-          font-size: 15px;
-          font-weight: 700;
-          color: #111827;
-          margin-bottom: 4px;
-      }
-
-      .report-badge {
-          display: inline-block;
-          padding: 2px 8px;
-          border-radius: 9999px;
-          font-size: 8px;
-          font-weight: 600;
-          color: #ffffff;
-      }
-
-      .badge-excellent { background-color: #10b981; }
-      .badge-good { background-color: #3b82f6; }
-      .badge-average { background-color: #eab308; color: #1f2937; }
-      .badge-poor { background-color: #ef4444; }
-      .badge-alert { background-color: #dc2626; }
-      .badge-neutral { background-color: #6b7280; }
-
-      /* Tarjetas generales y prevención de cortes entre páginas */
-      .report-card {
-          margin-bottom: 10px;
-          padding: 10px 12px;
-          border: 1px solid #e5e7eb;
-          border-radius: 6px;
-          background-color: #f9fafb;
-          page-break-inside: avoid;
-          break-inside: avoid;
-      }
-
-      .report-card-synergy {
-          background-color: #eff6ff;
-          border-color: #bfdbfe;
-      }
-
-      .report-card-alert {
-          background-color: #fef2f2;
-          border-color: #fecaca;
-      }
-
-      .report-card-title {
-          font-size: 10.5px;
-          font-weight: 700;
-          margin: 0 0 6px 0;
-          color: #1f2937;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-      }
-
-      /* Tabla de adecuación por tipo de tarea (RIASEC / TRIAD) */
+      /* Tablas estándar paginables nativamente */
       .report-table {
           width: 100%;
           border-collapse: collapse;
           margin-top: 6px;
-          font-size: 8.5px;
-          page-break-inside: avoid;
+          margin-bottom: 12px;
+          font-size: 8.8px;
       }
 
       .report-table th {
-          background-color: #e2e8f0;
-          color: #1e293b;
+          background-color: #f1f5f9;
+          color: #0f172a;
           font-weight: 700;
           text-align: left;
           padding: 6px 8px;
-          border: 1px solid #cbd5e1;
+          border-top: 1.5px solid #94a3b8;
+          border-bottom: 1.5px solid #94a3b8;
       }
 
       .report-table td {
           padding: 6px 8px;
-          border: 1px solid #e2e8f0;
+          border-bottom: 1px solid #e2e8f0;
           vertical-align: top;
-          background-color: #ffffff;
       }
 
-      .fit-pill {
-          display: inline-block;
-          padding: 1px 6px;
-          border-radius: 4px;
-          font-weight: 700;
-          font-size: 7.8px;
-      }
-      .fit-high { background-color: #dcfce7; color: #166534; }
-      .fit-mid { background-color: #fef9c3; color: #854d0e; }
-      .fit-low { background-color: #fee2e2; color: #991b1b; }
-
-      /* Barras de espectro visual (-3 a +3) para miembros */
-      .metric-bar-row {
-          display: flex;
-          align-items: center;
-          margin-top: 5px;
-          font-size: 8.5px;
+      .report-table tr {
+          page-break-inside: avoid;
+          break-inside: avoid;
       }
 
-      .metric-bar-label {
-          width: 115px;
-          font-weight: 600;
-          color: #374151;
+      .report-alert-block {
+          border-left: 3px solid #dc2626;
+          padding-left: 10px;
+          margin: 8px 0 12px 0;
+          color: #7f1d1d;
+          page-break-inside: avoid;
       }
 
-      .metric-bar-track {
-          flex: 1;
-          height: 7px;
-          background-color: #e5e7eb;
-          border-radius: 4px;
-          position: relative;
-          margin: 0 10px;
-          overflow: hidden;
-      }
-
-      .metric-bar-center {
-          position: absolute;
-          left: 50%;
-          top: 0;
-          bottom: 0;
-          width: 1px;
-          background-color: #6b7280;
-          z-index: 2;
-      }
-
-      .metric-bar-fill {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          border-radius: 2px;
-      }
-
-      .metric-bar-text {
-          width: 125px;
-          text-align: right;
-          color: #4b5563;
-      }
-
-      .member-role-desc {
-          margin-top: 7px;
-          padding-top: 6px;
-          border-top: 1px dashed #d1d5db;
-          font-size: 8.5px;
-          color: #374151;
+      .report-highlight-block {
+          border-left: 3px solid #2563eb;
+          padding-left: 10px;
+          margin: 8px 0 12px 0;
+          page-break-inside: avoid;
       }
 
       .report-footer {
           margin-top: 18px;
           padding-top: 8px;
-          border-top: 1px solid #e5e7eb;
+          border-top: 1px solid #cbd5e1;
           text-align: center;
           font-size: 8px;
-          color: #9ca3af;
+          color: #6b7280;
           page-break-inside: avoid;
       }
     </style>
@@ -1245,7 +1118,7 @@
         });
 
         // =========================================================
-        // GENERADOR DE INFORME DIAGNÓSTICO INTEGRAL (PROYECTO MAGNES)
+        // GENERADOR DE INFORME DIAGNÓSTICO EDITORIAL (SIN TARJETAS)
         // =========================================================
 
         generateReportBtn.addEventListener('click', () => {
@@ -1266,12 +1139,12 @@
                 html2pdf()
                     .from(element)
                     .set({
-                        margin: [12, 12, 14, 12],
+                        margin: [15, 15, 15, 15],
                         filename: `Informe_Magnes_${new Date().toISOString().slice(0, 10)}.pdf`,
                         image: { type: 'jpeg', quality: 0.98 },
-                        html2canvas: { scale: 2, useCORS: true },
+                        html2canvas: { scale: 2 },
                         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                        pagebreak: { mode: ['css', 'legacy'] }
                     })
                     .save()
                     .finally(() => {
@@ -1281,25 +1154,6 @@
                     });
             }, 400);
         });
-
-        function buildMetricBarHtml(label, normalizedValue, qualitativeText) {
-            const scaled = normalizedValue * 3;
-            const widthPercent = Math.min(Math.abs(normalizedValue) * 50, 50);
-            const isPositive = normalizedValue >= 0;
-            const leftPercent = isPositive ? 50 : (50 - widthPercent);
-            const barColor = isPositive ? '#f59e0b' : '#7c3aed';
-
-            return `
-                <div class="metric-bar-row">
-                    <span class="metric-bar-label">${label}</span>
-                    <div class="metric-bar-track">
-                        <div class="metric-bar-center"></div>
-                        <div class="metric-bar-fill" style="left: ${leftPercent}%; width: ${widthPercent}%; background-color: ${barColor};"></div>
-                    </div>
-                    <span class="metric-bar-text">${qualitativeText} (${scaled.toFixed(2)})</span>
-                </div>
-            `;
-        }
 
         function getCrossDimensionalDiagnosis(dom, soc, res) {
             const highDom = dom > 0.25;
@@ -1346,67 +1200,62 @@
         }
 
         function evaluateTaskEnvironmentFit(dom, soc, res, teamSize) {
-            // 1. Tareas Realistas / de Producción (Baja/Media Dom, Baja/Media Soc, Alta Res)
             let realisticFit, realisticNotes;
             if (res >= 0.35 && dom <= 0.45) {
-                realisticFit = { label: "Ajuste Alto", cls: "fit-high" };
+                realisticFit = "Alto";
                 realisticNotes = "La alta orientación a la tarea sin exceso de fricción jerárquica favorece la producción técnica, el rigor y el cumplimiento de plazos.";
             } else if (res >= 0.0) {
-                realisticFit = { label: "Ajuste Moderado", cls: "fit-mid" };
+                realisticFit = "Moderado";
                 realisticNotes = "Capacidad aceptable de ejecución, aunque podría optimizarse reforzando perfiles detallistas (<em>Task Completer</em> / <em>Problem Solver</em>).";
             } else {
-                realisticFit = { label: "Ajuste Bajo", cls: "fit-low" };
+                realisticFit = "Bajo";
                 realisticNotes = "Baja orientación a la tarea; alto riesgo de retrasos o dispersión en entornos técnicos o de producción exigentes.";
             }
 
-            // 2. Tareas Sociales / Colaborativas (Baja/Media Dom, Alta Soc, Media Res)
             let socialFit, socialNotes;
             if (soc >= 0.35 && dom <= 0.45) {
-                socialFit = { label: "Ajuste Alto", cls: "fit-high" };
+                socialFit = "Alto";
                 socialNotes = "La elevada sociabilidad y ausencia de autoritarismo facilitan la escucha, el apoyo mutuo, la mediación y el trabajo con personas.";
             } else if (soc >= 0.0) {
-                socialFit = { label: "Ajuste Moderado", cls: "fit-mid" };
+                socialFit = "Moderado";
                 socialNotes = "Clima funcional, pero requiere cuidar activamente los espacios de cohesión y comunicación interpersonal.";
             } else {
-                socialFit = { label: "Ajuste Bajo", cls: "fit-low" };
+                socialFit = "Bajo";
                 socialNotes = "Baja calidez interpersonal; pueden surgir tensiones o frialdad en tareas que exijan empatía, consenso o atención al cliente.";
             }
 
-            // 3. Tareas Instrumentales / Proyectos Complejos (Equilibrio entre Dirección, Cohesión y Tarea)
             const isBalanced = Math.abs(dom) <= 0.45 && Math.abs(soc) <= 0.55 && res >= 0.15;
             let complexFit, complexNotes;
             if (isBalanced) {
-                complexFit = { label: "Ajuste Alto", cls: "fit-high" };
+                complexFit = "Alto";
                 complexNotes = "El equilibrio tridimensional permite alternar eficazmente entre planificación, resolución de problemas, debate y cierre.";
             } else if (res >= -0.1) {
-                complexFit = { label: "Ajuste Moderado", cls: "fit-mid" };
+                complexFit = "Moderado";
                 complexNotes = "El equipo es viable, pero presenta asimetrías en algún eje que conviene compensar mediante reparto explícito de funciones.";
             } else {
-                complexFit = { label: "Ajuste Bajo", cls: "fit-low" };
+                complexFit = "Bajo";
                 complexNotes = "Descompensación estructural que dificultará sostener proyectos largos con múltiples fases interdependientes.";
             }
 
-            // 4. Entornos de Crisis / Emergencia (Alta Dom, Alta Res)
             let crisisFit, crisisNotes;
             if (dom >= 0.35 && res >= 0.25) {
-                crisisFit = { label: "Ajuste Alto", cls: "fit-high" };
+                crisisFit = "Alto";
                 crisisNotes = "Fuerte capacidad de mando y reacción rápida bajo presión; la alta directividad acelera la toma de decisiones críticas.";
             } else if (dom >= 0.0 && res >= 0.0) {
-                crisisFit = { label: "Ajuste Moderado", cls: "fit-mid" };
+                crisisFit = "Moderado";
                 crisisNotes = "Respuesta adecuada si se designa previamente un responsable único que centralice las decisiones en momentos críticos.";
             } else {
-                crisisFit = { label: "Ajuste Bajo", cls: "fit-low" };
+                crisisFit = "Bajo";
                 crisisNotes = "Tendencia excesiva a la deliberación o pasividad; puede sufrir parálisis ante imprevistos urgentes.";
             }
 
-            // Evaluación por tamaño del equipo (Generalistas vs Especialistas - Driskell et al., 2017)
             let sizeAdvice = "";
             if (teamSize <= 3) {
-                sizeAdvice = `<strong>Recomendación por Tamaño (${teamSize} integrantes - Equipo Pequeño):</strong> En grupos de 2 a 3 personas, la evidencia sugiere priorizar perfiles <em>generalistas</em> (puntuaciones moderadas en los tres ejes) capaces de asumir múltiples funciones de forma flexible, evitando perfiles excesivamente polarizados.`;
+                sizeAdvice = `En grupos de 2 a 3 personas (${teamSize} integrantes), la evidencia sugiere priorizar perfiles <em>generalistas</em> (puntuaciones moderadas en los tres ejes) capaces de asumir múltiples funciones de forma flexible, evitando perfiles excesivamente polarizados.`;
             } else if (teamSize <= 6) {
-                sizeAdvice = `<strong>Recomendación por Tamaño (${teamSize} integrantes - Equipo Mediano):</strong> Tamaño óptimo para combinar un núcleo equilibrado con roles diferenciados (al menos un referente de dirección, un facilitador social y perfiles de ejecución/cierre).`;
+                sizeAdvice = `Este tamaño mediano (${teamSize} integrantes) resulta óptimo para combinar un núcleo equilibrado con roles diferenciados (al menos un referente de dirección, un facilitador social y perfiles de ejecución/cierre).`;
             } else {
-                sizeAdvice = `<strong>Recomendación por Tamaño (${teamSize} integrantes - Equipo Grande):</strong> Permite incorporar perfiles <em>especialistas</em> en cada vértice del cubo TRIAD, pero aumenta el riesgo de subgrupos o colisión de roles; es clave contar con un rol de <em>Coordinator</em> activo.`;
+                sizeAdvice = `En grupos grandes (${teamSize} integrantes) es viable incorporar perfiles <em>especialistas</em> en cada eje del modelo TRIAD, pero aumenta el riesgo de colisión de roles; conviene contar con un rol de <em>Coordinator</em> activo.`;
             }
 
             return {
@@ -1474,9 +1323,9 @@
             const sociabilityIndex = calculateIndex(membersData, 'sociability');
             const resolutivityIndex = calculateIndex(membersData, 'resolutivity');
 
-            const domQual = getQualitativeValue(dominanceIndex, 'dominance');
-            const socQual = getQualitativeValue(sociabilityIndex, 'sociability');
-            const resQual = getQualitativeValue(resolutivityIndex, 'resolutivity');
+            const domQual = getQualitativeValue(dominanceIndex, 'dominance').text;
+            const socQual = getQualitativeValue(sociabilityIndex, 'sociability').text;
+            const resQual = getQualitativeValue(resolutivityIndex, 'resolutivity').text;
 
             const manualCount = membersData.filter(m => m.type === 'Manual').length;
             const autoCount = membersData.filter(m => m.type === 'Automático').length;
@@ -1489,179 +1338,199 @@
             let dominanceAnalysis, sociabilityAnalysis, resolutivityAnalysis;
 
             if (dominanceIndex > 0.5) {
-                dominanceAnalysis = `Tendencia marcada hacia la <strong>${domQual.text.toLowerCase()}</strong>. Facilita decisiones ágiles, pero exige moderación para evitar luchas de poder o que los perfiles más participativos eclipsen al resto.`;
+                dominanceAnalysis = `Tendencia marcada hacia la <strong>${domQual.toLowerCase()}</strong>. Facilita decisiones ágiles, pero exige moderación para evitar luchas de poder o que los perfiles más participativos eclipsen al resto.`;
             } else if (dominanceIndex < -0.5) {
-                dominanceAnalysis = `Predominio de <strong>${domQual.text.toLowerCase()}</strong>. Fomenta un entorno colaborativo y receptivo, aunque puede ralentizar la toma de decisiones si no se designa un referente claro.`;
+                dominanceAnalysis = `Predominio de <strong>${domQual.toLowerCase()}</strong>. Fomenta un entorno colaborativo y receptivo, aunque puede ralentizar la toma de decisiones si no se designa un referente claro.`;
             } else {
-                dominanceAnalysis = `Índice <strong>${domQual.text.toLowerCase()}</strong>. Existe una compensación saludable entre iniciativa directiva y disposición de apoyo, favoreciendo la adaptabilidad.`;
+                dominanceAnalysis = `Índice <strong>${domQual.toLowerCase()}</strong>. Existe una compensación saludable entre iniciativa directiva y disposición de apoyo, favoreciendo la adaptabilidad.`;
             }
 
             if (sociabilityIndex > 0.5) {
-                sociabilityAnalysis = `Equipo <strong>${socQual.text.toLowerCase()}</strong>. Alta cohesión interpersonal que facilita la confianza, la comunicación abierta y la resolución constructiva de desacuerdos.`;
+                sociabilityAnalysis = `Equipo <strong>${socQual.toLowerCase()}</strong>. Alta cohesión interpersonal que facilita la confianza, la comunicación abierta y la resolución constructiva de desacuerdos.`;
             } else if (sociabilityIndex < -0.5) {
-                sociabilityAnalysis = `Nivel de <strong>${socQual.text.toLowerCase()}</strong>. El grupo prioriza la tarea sobre el vínculo personal; conviene cuidar los espacios de comunicación para evitar fricciones o aislamiento.`;
+                sociabilityAnalysis = `Nivel de <strong>${socQual.toLowerCase()}</strong>. El grupo prioriza la tarea sobre el vínculo personal; conviene cuidar los espacios de comunicación para evitar fricciones o aislamiento.`;
             } else {
-                sociabilityAnalysis = `Índice <strong>${socQual.text.toLowerCase()}</strong>. Combina perfiles cercanos que lubrican la relación con integrantes más reservados y centrados en el trabajo individual.`;
+                sociabilityAnalysis = `Índice <strong>${socQual.toLowerCase()}</strong>. Combina perfiles cercanos que lubrican la relación con integrantes más reservados y centrados en el trabajo individual.`;
             }
 
             if (resolutivityIndex > 0.5) {
-                resolutivityAnalysis = `Equipo <strong>${resQual.text.toLowerCase()}</strong>. Alta disciplina, atención al detalle y compromiso con los plazos de entrega.`;
+                resolutivityAnalysis = `Equipo <strong>${resQual.toLowerCase()}</strong>. Alta disciplina, atención al detalle y compromiso con los plazos de entrega.`;
             } else if (resolutivityIndex < -0.5) {
-                resolutivityAnalysis = `Tendencia hacia un perfil <strong>${resQual.text.toLowerCase()}</strong>. Se recomienda establecer objetivos acotados, responsables directos y revisiones periódicas de avance.`;
+                resolutivityAnalysis = `Tendencia hacia un perfil <strong>${resQual.toLowerCase()}</strong>. Se recomienda establecer objetivos acotados, responsables directos y revisiones periódicas de avance.`;
             } else {
-                resolutivityAnalysis = `Índice <strong>${resQual.text.toLowerCase()}</strong>. Mantiene un margen saludable entre la ejecución rigurosa y la flexibilidad para explorar alternativas.`;
+                resolutivityAnalysis = `Índice <strong>${resQual.toLowerCase()}</strong>. Mantiene un margen saludable entre la ejecución rigurosa y la flexibilidad para explorar alternativas.`;
             }
 
             let reportHtml = `
                 <div class="report-container">
-                    <!-- Cabecera Ejecutiva -->
+                    <!-- Cabecera Limpia -->
                     <div class="report-header">
-                        <div>
-                            <h1 class="report-title">Informe de Composición y Roles de Equipo</h1>
-                            <p class="report-subtitle">Proyecto Magnes · Diagnóstico basado en Modelo TRIAD</p>
-                        </div>
-                        <div class="report-meta">
-                            <div><strong>Fecha:</strong> ${currentDate}</div>
-                            <div><strong>Tamaño del equipo:</strong> ${membersData.length} integrantes</div>
-                            <div><strong>Composición:</strong> ${manualCount} evaluados · ${autoCount} sugeridos</div>
-                        </div>
+                        <h1 class="report-title">Informe de Composición y Roles de Equipo</h1>
+                        <p class="report-subtitle">Proyecto Magnes · Diagnóstico basado en el Modelo TRIAD</p>
+                        <p class="report-meta">
+                            <strong>Fecha:</strong> ${currentDate} &nbsp;|&nbsp; 
+                            <strong>Tamaño:</strong> ${membersData.length} integrantes (${manualCount} evaluados, ${autoCount} sugeridos)
+                        </p>
                     </div>
 
-                    <!-- Marco Teórico -->
-                    <div class="report-intro-box">
-                        <strong>Fundamento Científico (Modelo TRIAD - Driskell, Driskell, Burke y Salas, 2017):</strong> Este modelo sintetiza 154 roles de la literatura científica en <strong>13 clústeres funcionales</strong> articulados sobre tres ejes conductuales: <em>Directividad</em> (liderazgo vs. deferencia), <em>Sociabilidad</em> (calidez y cohesión vs. distancia) y <em>Orientación a la Tarea</em> (foco y diligencia vs. dispersión). Aunque el equilibrio tridimensional ofrece una base sólida para equipos multifase, la efectividad óptima depende también del <strong>tipo de tarea</strong>, el <strong>tamaño del grupo</strong> y la <strong>fase temporal del proyecto</strong>.
-                    </div>
+                    <!-- Introducción Teórica -->
+                    <p class="report-p">
+                        <strong>Fundamento Científico (Modelo TRIAD - Driskell, Driskell, Burke y Salas, 2017):</strong> Este diagnóstico sintetiza 154 roles de la literatura científica en <strong>13 clústeres funcionales</strong> articulados sobre tres ejes conductuales: <em>Directividad</em> (liderazgo vs. deferencia), <em>Sociabilidad</em> (calidez y cohesión vs. distancia) y <em>Orientación a la Tarea</em> (foco y diligencia vs. dispersión). Aunque el equilibrio tridimensional ofrece una base sólida para equipos multifase, la efectividad óptima depende también del <strong>tipo de tarea</strong>, el <strong>tamaño del grupo</strong> y la <strong>fase temporal del proyecto</strong>.
+                    </p>
 
                     <!-- Sección 1: Índices Globales -->
                     <h2 class="report-section-title">1. Índices Globales y Sinergia del Equipo</h2>
-                    <div class="report-kpi-grid">
-                        <div class="report-kpi-card">
-                            <div class="report-kpi-label">Directividad</div>
-                            <div class="report-kpi-value">${dominanceIndex.toFixed(2)}</div>
-                            <span class="report-badge badge-${domQual.class}">${domQual.text}</span>
-                        </div>
-                        <div class="report-kpi-card">
-                            <div class="report-kpi-label">Sociabilidad</div>
-                            <div class="report-kpi-value">${sociabilityIndex.toFixed(2)}</div>
-                            <span class="report-badge badge-${socQual.class}">${socQual.text}</span>
-                        </div>
-                        <div class="report-kpi-card">
-                            <div class="report-kpi-label">Orientación a la Tarea</div>
-                            <div class="report-kpi-value">${resolutivityIndex.toFixed(2)}</div>
-                            <span class="report-badge badge-${resQual.class}">${resQual.text}</span>
-                        </div>
+                    
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 24%;">Dimensión</th>
+                                <th style="width: 14%;">Índice (-1 a +1)</th>
+                                <th style="width: 22%;">Valoración</th>
+                                <th style="width: 40%;">Interpretación Grupal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Directividad</strong></td>
+                                <td>${dominanceIndex.toFixed(2)}</td>
+                                <td>${domQual}</td>
+                                <td>${dominanceAnalysis}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sociabilidad</strong></td>
+                                <td>${sociabilityIndex.toFixed(2)}</td>
+                                <td>${socQual}</td>
+                                <td>${sociabilityAnalysis}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Orientación a la Tarea</strong></td>
+                                <td>${resolutivityIndex.toFixed(2)}</td>
+                                <td>${resQual}</td>
+                                <td>${resolutivityAnalysis}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="report-highlight-block">
+                        <p class="report-p" style="margin-bottom: 4px;">
+                            <strong>Diagnóstico Cruzado — ${crossDiagnosis.profile}:</strong> ${crossDiagnosis.advice}
+                        </p>
+                        <p class="report-p" style="margin-bottom: 0;">
+                            <strong>Consideración por Tamaño del Equipo:</strong> ${taskFit.sizeAdvice}
+                        </p>
                     </div>
 
-                    <div class="report-card report-card-synergy">
-                        <h3 class="report-card-title">Diagnóstico Cruzado: ${crossDiagnosis.profile}</h3>
-                        <p style="margin: 0 0 6px 0;">${crossDiagnosis.advice}</p>
-                        <p style="margin: 0; font-size: 8.5px; color: #1e3a8a;">${taskFit.sizeAdvice}</p>
-                    </div>
-
-                    <div class="report-card">
-                        <h4 class="report-card-title">Interpretación por Eje Conductual</h4>
-                        <p style="margin: 0 0 4px 0;">• <strong>Directividad:</strong> ${dominanceAnalysis}</p>
-                        <p style="margin: 0 0 4px 0;">• <strong>Sociabilidad:</strong> ${sociabilityAnalysis}</p>
-                        <p style="margin: 0;">• <strong>Orientación a la Tarea:</strong> ${resolutivityAnalysis}</p>
-                    </div>
-
-                    <!-- Sección 2: Adecuación según Tipo de Tarea y Fase Temporal -->
+                    <!-- Sección 2: Adecuación por Tipo de Tarea -->
                     <h2 class="report-section-title">2. Adecuación según Tipo de Tarea y Dinámica Temporal</h2>
-                    <div class="report-card">
-                        <p style="margin: 0 0 6px 0; font-size: 8.5px; color: #4b5563;">
-                            De acuerdo con la integración entre el modelo TRIAD y los entornos de tarea (Holland / Driskell & Salas), cada contexto demanda una configuración distinta de los ejes:
-                        </p>
-                        <table class="report-table">
-                            <thead>
+                    <p class="report-p">
+                        De acuerdo con la integración entre el modelo TRIAD y los entornos de tarea (Holland / Driskell & Salas), cada contexto demanda una configuración distinta de los ejes:
+                    </p>
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">Entorno / Tipo de Tarea</th>
+                                <th style="width: 14%;">Ajuste</th>
+                                <th style="width: 58%;">Diagnóstico y Recomendación Operativa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${taskFit.rows.map(r => `
                                 <tr>
-                                    <th style="width: 28%;">Entorno / Tipo de Tarea</th>
-                                    <th style="width: 16%;">Nivel de Ajuste</th>
-                                    <th style="width: 56%;">Diagnóstico y Recomendación Operativa</th>
+                                    <td><strong>${r.env}</strong></td>
+                                    <td><strong>${r.fit}</strong></td>
+                                    <td>${r.notes}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                ${taskFit.rows.map(r => `
-                                    <tr>
-                                        <td><strong>${r.env}</strong></td>
-                                        <td><span class="fit-pill ${r.fit.cls}">${r.fit.label}</span></td>
-                                        <td>${r.notes}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                        <p style="margin: 8px 0 0 0; font-size: 8.3px; color: #374151;">
-                            <strong>Evolución Temporal del Proyecto:</strong> En fases <em>iniciales</em> (arranque y planificación) cobran protagonismo los roles de alta Directividad y Coordinación (<em>Team Leader, Coordinator</em>); en fases <em>intermedias</em> (ejecución y resolución) son críticos los roles analíticos y de soporte (<em>Problem Solver, Evaluator, Social</em>); y en fases <em>finales</em> (cierre y entrega) el peso recae en perfiles de alta Orientación a la Tarea y detalle (<em>Task Completer, Teamwork Support</em>).
-                        </p>
-                    </div>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    <p class="report-p">
+                        <strong>Evolución Temporal del Proyecto:</strong> En fases <em>iniciales</em> (arranque y planificación) cobran protagonismo los roles de alta Directividad y Coordinación (<em>Team Leader, Coordinator</em>); en fases <em>intermedias</em> (ejecución y resolución) son críticos los roles analíticos y de soporte (<em>Problem Solver, Evaluator, Social</em>); y en fases <em>finales</em> (cierre y entrega) el peso recae en perfiles de alta Orientación a la Tarea y detalle (<em>Task Completer, Teamwork Support</em>).
+                    </p>
 
                     <!-- Sección 3: Auditoría de Roles -->
                     <h2 class="report-section-title">3. Auditoría de Roles, Redundancias y Riesgos</h2>
-                    <div class="report-card">
-                        <h4 class="report-card-title">Balance Estructural de Roles</h4>
-                        <p style="margin: 0 0 6px 0;">
+                    <ul class="report-list">
+                        <li>
                             <strong>Redundancias detectadas (Colisión de Roles):</strong> 
                             ${roleDiagnostics.redundancies.length > 0 
                                 ? `Coincidencia en ${roleDiagnostics.redundancies.join(', ')}. La evidencia advierte rendimientos decrecientes y posible solapamiento si varios miembros compiten por el mismo espacio funcional.` 
                                 : 'No se observan duplicidades significativas de roles; buena distribución del espacio tridimensional.'}
-                        </p>
-                        <p style="margin: 0;">
+                        </li>
+                        <li>
                             <strong>Vacíos funcionales:</strong> 
                             ${roleDiagnostics.missingFunctions.length > 0 
-                                ? `<br/>- ${roleDiagnostics.missingFunctions.join('<br/>- ')}` 
+                                ? `<ul class="report-list" style="margin-top: 4px; margin-bottom: 0;"><li>${roleDiagnostics.missingFunctions.join('</li><li>')}</li></ul>` 
                                 : 'El equipo cubre satisfactoriamente las tres macro-funciones principales (Dirección, Cohesión y Ejecución).'}
-                        </p>
-                    </div>
+                        </li>
+                    </ul>
             `;
 
             if (roleDiagnostics.negativeMembers.length > 0) {
                 reportHtml += `
-                    <div class="report-card report-card-alert">
-                        <h4 class="report-card-title" style="color: #b91c1c;">Alertas de Roles Disfuncionales y Pautas de Intervención</h4>
-                        ${roleDiagnostics.negativeMembers.map(item => `
-                            <p style="margin: 0 0 5px 0;">
-                                <strong>${item.name}</strong> (Perfil afín a <em>${item.role}</em>): ${getNegativeRoleIntervention(item.role)}
-                            </p>
-                        `).join('')}
+                    <div class="report-alert-block">
+                        <p class="report-p" style="margin-bottom: 4px;"><strong>Alertas de Roles Disfuncionales y Pautas de Intervención:</strong></p>
+                        <ul class="report-list" style="margin-bottom: 0;">
+                            ${roleDiagnostics.negativeMembers.map(item => `
+                                <li><strong>${item.name}</strong> (Perfil afín a <em>${item.role}</em>): ${getNegativeRoleIntervention(item.role)}</li>
+                            `).join('')}
+                        </ul>
                     </div>
                 `;
             }
 
-            // Sección 4: Fichas Individuales
-            reportHtml += `<h2 class="report-section-title">4. Perfil Individual de los Integrantes</h2>`;
+            // Sección 4: Tabla Individual Limpia
+            reportHtml += `
+                <h2 class="report-section-title">4. Perfil Individual de los Integrantes</h2>
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 18%;">Integrante</th>
+                            <th style="width: 15%;">Directividad</th>
+                            <th style="width: 15%;">Sociabilidad</th>
+                            <th style="width: 15%;">Orient. Tarea</th>
+                            <th style="width: 37%;">Rol Asignado y Función Conductual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
 
             membersData.forEach((member, index) => {
                 const role = getRecommendedRole(member);
                 const name = member.type === 'Automático' ? `Integrante Sugerido ${index + 1}` : member.name;
-                const typeBadge = member.type === 'Automático' 
-                    ? `<span class="report-badge badge-good">Sugerido IA</span>` 
-                    : `<span class="report-badge badge-neutral">Evaluado</span>`;
-                const roleBadgeClass = role.isAlert ? 'badge-alert' : 'badge-excellent';
+                const originLabel = member.type === 'Automático' ? 'Sugerido IA' : 'Evaluado';
 
                 const domDesc = getMetricDescription('dominance', member.dominance);
                 const socDesc = getMetricDescription('sociability', member.sociability);
                 const resDesc = getMetricDescription('resolutivity', member.resolutivity);
 
+                const domVal = (member.dominance * 3).toFixed(2);
+                const socVal = (member.sociability * 3).toFixed(2);
+                const resVal = (member.resolutivity * 3).toFixed(2);
+
+                const roleTitleStyle = role.isAlert ? 'color: #dc2626;' : 'color: #1e3a8a;';
+
                 reportHtml += `
-                    <div class="report-card">
-                        <div class="report-card-title">
-                            <span>${name} &nbsp;${typeBadge}</span>
-                            <span class="report-badge ${roleBadgeClass}">Rol: ${role.name}</span>
-                        </div>
-                        ${buildMetricBarHtml('Directividad', member.dominance, domDesc)}
-                        ${buildMetricBarHtml('Sociabilidad', member.sociability, socDesc)}
-                        ${buildMetricBarHtml('Orientación Tarea', member.resolutivity, resDesc)}
-                        <div class="member-role-desc">
-                            <strong>Comportamiento característico del rol (${role.name}):</strong> ${role.desc}
-                        </div>
-                    </div>
+                    <tr>
+                        <td><strong>${name}</strong><br><span style="font-size: 7.5px; color: #6b7280;">(${originLabel})</span></td>
+                        <td>${domDesc}<br><span style="color: #6b7280;">(${domVal})</span></td>
+                        <td>${socDesc}<br><span style="color: #6b7280;">(${socVal})</span></td>
+                        <td>${resDesc}<br><span style="color: #6b7280;">(${resVal})</span></td>
+                        <td>
+                            <strong style="${roleTitleStyle}">${role.name}${role.isAlert ? ' [Alerta]' : ''}</strong><br>
+                            <span style="color: #374151;">${role.desc}</span>
+                        </td>
+                    </tr>
                 `;
             });
 
             reportHtml += `
-                    <div class="report-footer">
-                        Informe generado automáticamente por Proyecto Magnes · Referencia científica: Driskell, T., Driskell, J. E., Burke, C. S., & Salas, E. (2017). Team Roles: A Review and Integration. Small Group Research.
-                    </div>
+                    </tbody>
+                </table>
+                <div class="report-footer">
+                    Informe generado automáticamente por Proyecto Magnes · Referencia científica: Driskell, T., Driskell, J. E., Burke, C. S., & Salas, E. (2017). Team Roles: A Review and Integration. Small Group Research.
                 </div>
+            </div>
             `;
 
             return reportHtml;
