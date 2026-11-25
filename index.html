@@ -120,61 +120,201 @@
 
       /* Estilos para el PDF del informe */
       .report-container {
-        font-family: 'Inter', sans-serif;
-        padding: 20px;
-        color: #1f2937;
-        font-size: 10px; /* Tamaño de fuente más pequeño para un mejor ajuste */
-      }
-      .report-header {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-      .report-title {
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-      .report-subtitle {
-        color: #4b5563;
-        font-size: 8px;
-      }
-      .report-divider {
-        border: 1px solid #e5e7eb;
-        margin-bottom: 15px;
-        margin-top: 15px;
-      }
-      .report-section-title {
-        font-size: 14px;
-        font-weight: bold;
-        margin-bottom: 8px;
-        margin-top: 15px;
-      }
-      .report-card {
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
-        background-color: #f9fafb;
-      }
-      .report-card-title {
-        font-size: 12px;
-        font-weight: bold;
-        margin-bottom: 5px;
-        color: #4b5563;
-      }
-      .report-summary-list {
-        list-style-type: none;
-        padding-left: 0;
-        margin-bottom: 15px;
-      }
-      .report-summary-item {
-        margin-bottom: 3px;
-      }
-      
-      .report-card ul, .report-card li {
-        margin: 0;
-        padding: 0;
-      }
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+    font-size: 9.5px;
+    line-height: 1.45;
+    padding: 10px 15px;
+}
+
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+}
+
+.report-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.report-subtitle {
+    color: #2563eb;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 2px 0 0 0;
+}
+
+.report-meta {
+    text-align: right;
+    font-size: 8.5px;
+    color: #6b7280;
+}
+
+.report-section-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1e3a8a;
+    border-left: 3px solid #2563eb;
+    padding-left: 8px;
+    margin-top: 18px;
+    margin-bottom: 10px;
+    page-break-after: avoid;
+}
+
+.report-intro-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    color: #334155;
+    font-size: 8.8px;
+}
+
+/* Grid de KPIs del equipo */
+.report-kpi-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+}
+
+.report-kpi-card {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+}
+
+.report-kpi-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: #4b5563;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.report-kpi-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.report-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.badge-excellent { background-color: #10b981; }
+.badge-good { background-color: #3b82f6; }
+.badge-average { background-color: #eab308; color: #1f2937; }
+.badge-poor { background-color: #ef4444; }
+.badge-alert { background-color: #dc2626; }
+.badge-neutral { background-color: #6b7280; }
+
+/* Tarjetas generales y prevención de cortes entre páginas */
+.report-card {
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background-color: #f9fafb;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.report-card-synergy {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.report-card-alert {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+}
+
+.report-card-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    color: #1f2937;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Barras de espectro visual (-3 a +3) para miembros */
+.metric-bar-row {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 8.5px;
+}
+
+.metric-bar-label {
+    width: 115px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.metric-bar-track {
+    flex: 1;
+    height: 7px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    position: relative;
+    margin: 0 10px;
+    overflow: hidden;
+}
+
+.metric-bar-center {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #6b7280;
+    z-index: 2;
+}
+
+.metric-bar-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 2px;
+}
+
+.metric-bar-text {
+    width: 125px;
+    text-align: right;
+    color: #4b5563;
+}
+
+.report-footer {
+    margin-top: 20px;
+    padding-top: 8px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 8px;
+    color: #9ca3af;
+    page-break-inside: avoid;
+}
     </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
@@ -1128,151 +1268,336 @@ const resolutivityAvg = (parseFloat(resolutivitySlider1.value) + parseFloat(reso
 
         // Click event handler for the 'Generar Informe IA' button
         generateReportBtn.addEventListener('click', () => {
-            if (membersData.length === 0) {
-                showMessage('No hay miembros para generar el informe. Por favor, crea un equipo primero.', copyMessageBox);
-                return;
-            }
-            
-            generateReportBtn.textContent = 'Generando...';
-            generateReportBtn.disabled = true;
+    if (membersData.length === 0) {
+        showMessage('No hay miembros para generar el informe. Por favor, crea un equipo primero.', copyMessageBox);
+        return;
+    }
+    
+    generateReportBtn.textContent = 'Generando informe...';
+    generateReportBtn.disabled = true;
 
-            const reportContent = generateAIReportContent();
-            
-            const element = document.createElement('div');
-            element.innerHTML = reportContent;
-            
-            // Set a timeout to allow the loading text to be visible
-            setTimeout(() => {
-                html2pdf()
-                    .from(element)
-                    .set({
-                        margin: [20, 15, 20, 15],
-                        filename: 'Informe_Proyecto_Magnes.pdf',
-                        html2canvas: { scale: 2 },
-                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                    })
-                    .save()
-                    .finally(() => {
-                        generateReportBtn.textContent = 'Generar Informe IA';
-                        generateReportBtn.disabled = false;
-                        showMessage('¡Informe PDF generado con éxito!', copyMessageBox);
-                    });
-            }, 500);
-        });
-
-        // Function to generate the AI report content as a string
-        function generateAIReportContent() {
-            // Calcular los índices del equipo
-            const dominanceIndex = calculateIndex(membersData, 'dominance');
-            const sociabilityIndex = calculateIndex(membersData, 'sociability');
-            const resolutivityIndex = calculateIndex(membersData, 'resolutivity');
-
-            const dominanceQualitative = getQualitativeValue(dominanceIndex, 'dominance').text;
-            const sociabilityQualitative = getQualitativeValue(sociabilityIndex, 'sociability').text;
-            const resolutivityQualitative = getQualitativeValue(resolutivityIndex, 'resolutivity').text;
-
-            let dominanceAnalysis, sociabilityAnalysis, resolutivityAnalysis;
-
-            // Análisis de Directividad
-            if (dominanceIndex > 0.5) {
-                dominanceAnalysis = `Este equipo muestra una clara tendencia a la ${dominanceQualitative.toLowerCase()}, lo que sugiere una estructura de liderazgo definida. Esto puede facilitar la toma de decisiones rápidas, pero también requiere una gestión cuidadosa para asegurar que las voces de los miembros con menor Directividad sean escuchadas.`;
-            } else if (dominanceIndex < -0.5) {
-                dominanceAnalysis = `El equipo tiende a ser ${dominanceQualitative.toLowerCase()}, lo que podría fomentar un entorno colaborativo y de apoyo mutuo. Sin embargo, puede ser un desafío para la dirección y la toma de decisiones, por lo que es vital asignar roles de liderazgo claros para ciertas tareas.`;
-            } else {
-                dominanceAnalysis = `Con un índice de ${dominanceQualitative.toLowerCase()}, este equipo tiene un buen equilibrio de líderes y seguidores, lo que le permite ser flexible y adaptarse a diferentes situaciones. Es un grupo ideal para tareas que requieren colaboración en todos los niveles.`;
-            }
-
-            // Análisis de Sociabilidad
-            if (sociabilityIndex > 0.5) {
-                sociabilityAnalysis = `El equipo es ${sociabilityQualitative.toLowerCase()}, lo que indica una fuerte cohesión social. Esto facilita la comunicación, la resolución de conflictos y el trabajo en equipo, creando un ambiente de apoyo.`;
-            } else if (sociabilityIndex < -0.5) {
-                sociabilityAnalysis = `El índice de ${sociabilityQualitative.toLowerCase()} podría indicar un enfoque más orientado a la tarea que a las relaciones interpersonales. Aunque esto puede ser eficiente para proyectos específicos, es crucial fomentar la comunicación abierta para evitar malentendidos.`;
-            } else {
-                sociabilityAnalysis = `Con un índice de ${sociabilityQualitative.toLowerCase()}, el equipo tiene una buena combinación de miembros sociables y otros más centrados en la tarea. Esto permite un equilibrio productivo entre las relaciones y la eficiencia.`;
-            }
-
-            // Análisis de Orientación a la Tarea
-            if (resolutivityIndex > 0.5) {
-                resolutivityAnalysis = `El equipo es ${resolutivityQualitative.toLowerCase()}, lo que se traduce en una alta orientación a la finalización de tareas. Este grupo se caracteriza por la diligencia y la responsabilidad, ideal para proyectos con plazos estrictos.`;
-            } else if (resolutivityIndex < -0.5) {
-                resolutivityAnalysis = `El índice de ${resolutivityQualitative.toLowerCase()} sugiere que el equipo podría tener dificultades para mantenerse enfocado. Para mejorar la productividad, se recomienda establecer objetivos claros y seguimiento regular.`;
-            } else {
-                resolutivityAnalysis = `Este equipo muestra un índice de ${resolutivityQualitative.toLowerCase()}, lo que significa que el equipo es flexible para la tarea y no está excesivamente focalizado. Esto es ideal para las tareas que requieren explorar y generar nuevas ideas.`;
-            }
-
-            let reportHtml = `
-                <div class="report-container">
-                    <div class="report-header">
-                        <h1 class="report-title">Análisis de Composición del Equipo</h1>
-                        <p class="report-subtitle">Generado por Magnes AI</p>
-                    </div>
-
-                    <div class="report-divider"></div>
-
-                    <h2 class="report-section-title">Análisis General del Equipo</h2>
-                    <p>El modelo TRIAD (Tracking Roles In and Across Domains) ofrece una propuesta práctica que ha simplificado los múltiples roles existentes en la literatura hasta llegar a la conclusión que realmente solo podemos llegar a diferenciar 13 roles diferenciados. Diseñado por Driskell, Driskell, Burke y Salas (2017), el modelo parte de un enfoque dimensional para definir el comportamiento de los roles en equipos de trabajo a través de tres grandes ejes conductuales: Directividad, sociabilidad y orientación a la tarea.</p>
-                    <p>Algunas personas aportan dirección y estructura (alta Directividad), otras cohesionan y facilitan las relaciones (alta sociabilidad), y otras impulsan la tarea hasta su ejecución final (alta orientación a la tarea). La suma de roles favorece que el equipo disponga de funciones primarias que conducen a la efectividad grupal: en etapas iniciales destacarán los roles de liderazgo, planificación, coordinación, posteriormente en una etapa intermedia habrán roles capaces de monitorear al equipo, resolver problemas, cohesionar, ejecución, e incluso en etapas finales capacidad de cierre. Sin embargo, el modelo también contempla que en ocasiones se pueda romper el equilibrio, pues también puede ser necesario adaptar de forma dinámica la composición a la tarea del equipo: habrán situaciones en las que sea necesario que unas dimensiones del modelo se encuentren en mayor proporción, favoreciendo así un sistema adaptado a las demandas de la tarea.</p>
-                    <p>El algoritmo permite hacer recomendaciones de composición basadas en el conjunto de roles del modelo, facilitando:
-                    <ul>
-                    <li>Comprobar el nivel de equilibrio de funciones.</li>
-                    <li>La detección de redundancias (varios miembros tratando de asumir el mismo rol).</li>
-                    <li>Detectar vacíos funcionales (roles que nadie está cubriendo).</li>
-                    <li>Capacidad de previsión de roles que van a ser potencialmente conflictivos.</li>
-                    <li>Ver el grado de ajuste entre el tipo de tarea y la composición de equipo.</li>
-                    </ul></p>
-
-                    <ul class="report-summary-list">
-                        <li class="report-summary-item"><strong>Directividad:</strong> ${dominanceQualitative} (${dominanceIndex.toFixed(2)})</li>
-                        <li class="report-summary-item"><strong>Sociabilidad:</strong> ${sociabilityQualitative} (${sociabilityIndex.toFixed(2)})</li>
-                        <li class="report-summary-item"><strong>Orientación a la Tarea:</strong> ${resolutivityQualitative} (${resolutivityIndex.toFixed(2)})</li>
-                    </ul>
-
-                    <h3 class="report-section-title">Análisis de los Índices Clave</h3>
-                    <div class="space-y-4">
-                      <div class="report-card">
-                          <h4 class="report-card-title">Directividad</h4>
-                          <p>${dominanceAnalysis}</p>
-                      </div>
-                      <div class="report-card">
-                          <h4 class="report-card-title">Sociabilidad</h4>
-                          <p>${sociabilityAnalysis}</p>
-                      </div>
-                      <div class="report-card">
-                          <h4 class="report-card-title">Orientación a la Tarea</h4>
-                          <p>${resolutivityAnalysis}</p>
-                      </div>
-                    </div>
-
-                    <h2 class="report-section-title">Análisis Individual de Miembros</h2>
-            `;
-
-            membersData.forEach((member, index) => {
-                const role = getRecommendedRole(member);
-                const name = member.type === 'Automático' ? `Integrante Sugerido ${index + 1}` : member.name;
-                const roleText = role.isAlert ? `El miembro parece tener un rol problemático: <strong>${role.name}</strong>.` : `El rol más compatible es: <strong>${role.name}</strong>.`;
-
-                reportHtml += `
-                    <div class="report-card">
-                        <h3 class="report-card-title">${name}</h3>
-                        <p><strong>Tipo:</strong> ${member.type}</p>
-                        <ul style="list-style-type: none; padding-left: 0; margin-top: 10px;">
-                            <li><strong>Directividad:</strong> ${getMetricDescription('dominance', member.dominance)}</li>
-                            <li><strong>Sociabilidad:</strong> ${getMetricDescription('sociability', member.sociability)}</li>
-                            <li><strong>Orientación a la Tarea:</strong> ${getMetricDescription('resolutivity', member.resolutivity)}</li>
-                        </ul>
-                        <p><strong>Análisis de Rol:</strong> ${roleText}</p>
-                    </div>
-                `;
+    const reportContent = generateAIReportContent();
+    
+    const element = document.createElement('div');
+    element.innerHTML = reportContent;
+    
+    setTimeout(() => {
+        html2pdf()
+            .from(element)
+            .set({
+                margin: [12, 12, 14, 12],
+                filename: `Informe_Magnes_${new Date().toISOString().slice(0, 10)}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            })
+            .save()
+            .finally(() => {
+                generateReportBtn.textContent = 'Generar Informe IA';
+                generateReportBtn.disabled = false;
+                showMessage('¡Informe PDF generado con éxito!', copyMessageBox);
             });
+    }, 400);
+});
 
-            reportHtml += `
-                <div class="report-divider"></div>
-                <p style="text-align: center; font-size: 12px; color: #9ca3af; margin-top: 10px;">Fin del informe. Este análisis se basa en los datos proporcionados y sirve como guía. Las dinámicas de equipo pueden variar.</p>
-                </div>
-            `;
+/**
+ * Construye una barra visual centrada en 0 para valores entre -1 y 1 (escala -3 a +3).
+ */
+function buildMetricBarHtml(label, normalizedValue, qualitativeText) {
+    const scaled = normalizedValue * 3;
+    // Porcentaje desde el centro (50%). Máximo desplazamiento: 50%
+    const widthPercent = Math.min(Math.abs(normalizedValue) * 50, 50);
+    const isPositive = normalizedValue >= 0;
+    const leftPercent = isPositive ? 50 : (50 - widthPercent);
+    const barColor = isPositive ? '#f59e0b' : '#7c3aed'; // Ámbar para positivo, violeta para negativo (acorde a tus sliders)
 
-            return reportHtml;
+    return `
+        <div class="metric-bar-row">
+            <span class="metric-bar-label">${label}</span>
+            <div class="metric-bar-track">
+                <div class="metric-bar-center"></div>
+                <div class="metric-bar-fill" style="left: ${leftPercent}%; width: ${widthPercent}%; background-color: ${barColor};"></div>
+            </div>
+            <span class="metric-bar-text">${qualitativeText} (${scaled.toFixed(2)})</span>
+        </div>
+    `;
+}
+
+/**
+ * Genera el diagnóstico cruzado combinando los 3 ejes del equipo.
+ */
+function getCrossDimensionalDiagnosis(dom, soc, res) {
+    const highDom = dom > 0.25;
+    const lowDom = dom < -0.25;
+    const highSoc = soc > 0.25;
+    const lowSoc = soc < -0.25;
+    const highRes = res > 0.25;
+    const lowRes = res < -0.25;
+
+    if (highDom && lowSoc && highRes) {
+        return {
+            profile: "Equipo Ejecutivo de Alto Rendimiento (Riesgo de Fricción)",
+            advice: "Perfil orientado a resultados rápidos y toma de decisiones firme, pero con baja cohesión interpersonal. Ideal para entornos de crisis o entregas urgentes. Se recomienda establecer canales formales de retroalimentación para evitar conflictos de ego y desgaste emocional."
+        };
+    }
+    if (lowDom && highSoc && lowRes) {
+        return {
+            profile: "Equipo Cohesivo y Armónico (Riesgo de Dispersión)",
+            advice: "Excelente clima laboral y comunicación fluida, pero carece de dirección clara y empuje hacia el cierre de tareas. Ideal para fases iniciales de ideación o brainstorming. Requiere designar un coordinador explícito y fijar hitos semanales medibles."
+        };
+    }
+    if (highDom && highSoc && highRes) {
+        return {
+            profile: "Equipo Proactivo y Expansivo (Riesgo de Solapamiento)",
+            advice: "Gran energía colectiva, alta iniciativa y fuerte implicación tanto social como operativa. El principal riesgo es la duplicidad de esfuerzos o disputas por el liderazgo. Conviene delimitar claramente las áreas de responsabilidad de cada integrante."
+        };
+    }
+    if (lowDom && lowSoc && highRes) {
+        return {
+            profile: "Equipo Técnico Autónomo (Riesgo de Trabajo en Silos)",
+            advice: "Alta capacidad de ejecución individual y atención al detalle, pero con poca interacción espontánea y liderazgo difuso. Funciona muy bien en tareas técnicas compartimentadas; se aconsejan reuniones breves de sincronización para mantener la visión global."
+        };
+    }
+    if (lowRes) {
+        return {
+            profile: "Equipo con Déficit de Ejecución",
+            advice: "La puntuación global en orientación a la tarea sugiere dificultades para mantener el foco o cerrar entregables a tiempo. Es prioritario incorporar perfiles resolutivos (Task Completer / Problem Solver) o fragmentar los objetivos en subtareas cortas."
+        };
+    }
+    return {
+        profile: "Equipo Equilibrado y Adaptable",
+        advice: "La combinación de dimensiones muestra una distribución funcional sin extremos críticos. El grupo dispone de suficiente flexibilidad para alternar entre fases de planificación, debate interpersonal y ejecución técnica según lo exija el proyecto."
+    };
+}
+
+/**
+ * Analiza la distribución de roles: redundancias, vacíos funcionales y alertas negativas.
+ */
+function analyzeTeamRoles(members) {
+    const roleCounts = {};
+    const negativeMembers = [];
+    const positiveRolesPresent = new Set();
+
+    members.forEach((m, idx) => {
+        const name = m.type === 'Automático' ? `Integrante Sugerido ${idx + 1}` : m.name;
+        const roleInfo = getRecommendedRole(m);
+        roleCounts[roleInfo.name] = (roleCounts[roleInfo.name] || 0) + 1;
+
+        if (roleInfo.isAlert) {
+            negativeMembers.push({ name, role: roleInfo.name });
+        } else {
+            positiveRolesPresent.add(roleInfo.name);
         }
+    });
+
+    // 1. Detectar redundancias (mismo rol repetido >= 2 veces)
+    const redundancies = Object.entries(roleCounts)
+        .filter(([_, count]) => count >= 2)
+        .map(([role, count]) => `<strong>${role}</strong> (${count} miembros)`);
+
+    // 2. Detectar vacíos funcionales por macro-categoría TRIAD
+    const leadershipRoles = ["Team Leader", "Task Motivator", "Coordinator"];
+    const socialRoles = ["Social", "Coordinator", "Follower"];
+    const executionRoles = ["Task Completer", "Problem Solver", "Evaluator", "Teamwork Support"];
+
+    const missingFunctions = [];
+    if (!leadershipRoles.some(r => positiveRolesPresent.has(r))) {
+        missingFunctions.push("<strong>Dirección y Coordinación</strong> (nadie cubre roles como <em>Team Leader</em> o <em>Coordinator</em>).");
+    }
+    if (!socialRoles.some(r => positiveRolesPresent.has(r))) {
+        missingFunctions.push("<strong>Cohesión y Soporte Social</strong> (ausencia de roles facilitadores como <em>Social</em> o <em>Follower</em>).");
+    }
+    if (!executionRoles.some(r => positiveRolesPresent.has(r))) {
+        missingFunctions.push("<strong>Ejecución y Control de Calidad</strong> (faltan perfiles orientados al cierre como <em>Task Completer</em> o <em>Evaluator</em>).");
+    }
+
+    return { redundancies, missingFunctions, negativeMembers };
+}
+
+/**
+ * Devuelve pautas de intervención específicas para roles disfuncionales.
+ */
+function getNegativeRoleIntervention(roleName) {
+    const interventions = {
+        "Power Seeker": "Canalizar su alta iniciativa asignándole responsabilidades delimitadas donde tenga autonomía, pero estableciendo reglas claras de toma de decisiones compartida.",
+        "Critic": "Aprovechar su capacidad analítica pidiéndole que acompañe cada objeción con una propuesta de mejora concreta en fases de revisión.",
+        "Attention Seeker": "Estructurar turnos de palabra breves en las reuniones y vincular su visibilidad dentro del grupo al cumplimiento de entregables objetivos.",
+        "Negative": "Realizar un seguimiento individual para detectar desmotivación o bloqueo, asignándole tareas acotadas de corto plazo con acompañamiento cercano."
+    };
+    return interventions[roleName] || "Supervisar su integración en las dinámicas grupales y clarificar expectativas de comportamiento.";
+}
+
+/**
+ * Construye el HTML completo del informe PDF.
+ */
+function generateAIReportContent() {
+    const dominanceIndex = calculateIndex(membersData, 'dominance');
+    const sociabilityIndex = calculateIndex(membersData, 'sociability');
+    const resolutivityIndex = calculateIndex(membersData, 'resolutivity');
+
+    const domQual = getQualitativeValue(dominanceIndex, 'dominance');
+    const socQual = getQualitativeValue(sociabilityIndex, 'sociability');
+    const resQual = getQualitativeValue(resolutivityIndex, 'resolutivity');
+
+    const manualCount = membersData.filter(m => m.type === 'Manual').length;
+    const autoCount = membersData.filter(m => m.type === 'Automático').length;
+    const currentDate = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    const crossDiagnosis = getCrossDimensionalDiagnosis(dominanceIndex, sociabilityIndex, resolutivityIndex);
+    const roleDiagnostics = analyzeTeamRoles(membersData);
+
+    // Textos individuales por dimensión
+    let dominanceAnalysis, sociabilityAnalysis, resolutivityAnalysis;
+
+    if (dominanceIndex > 0.5) {
+        dominanceAnalysis = `Tendencia marcada hacia la <strong>${domQual.text.toLowerCase()}</strong>. Facilita decisiones ágiles, pero exige moderación para evitar que los perfiles más participativos eclipsen al resto.`;
+    } else if (dominanceIndex < -0.5) {
+        dominanceAnalysis = `Predominio de <strong>${domQual.text.toLowerCase()}</strong>. Fomenta un entorno colaborativo y receptivo, aunque puede ralentizar la toma de decisiones si no se designa un referente claro.`;
+    } else {
+        dominanceAnalysis = `Índice <strong>${domQual.text.toLowerCase()}</strong>. Existe una compensación saludable entre iniciativa directiva y disposición de apoyo, favoreciendo la adaptabilidad.`;
+    }
+
+    if (sociabilityIndex > 0.5) {
+        sociabilityAnalysis = `Equipo <strong>${socQual.text.toLowerCase()}</strong>. Alta cohesión interpersonal que facilita la confianza, la comunicación abierta y la resolución constructiva de desacuerdos.`;
+    } else if (sociabilityIndex < -0.5) {
+        sociabilityAnalysis = `Nivel de <strong>${socQual.text.toLowerCase()}</strong>. El grupo prioriza la tarea sobre el vínculo personal; conviene cuidar los espacios de comunicación para evitar malentendidos.`;
+    } else {
+        sociabilityAnalysis = `Índice <strong>${socQual.text.toLowerCase()}</strong>. Combina perfiles cercanos que lubrican la relación con integrantes más reservados y centrados en el trabajo individual.`;
+    }
+
+    if (resolutivityIndex > 0.5) {
+        resolutivityAnalysis = `Equipo <strong>${resQual.text.toLowerCase()}</strong>. Alta disciplina, atención al detalle y compromiso con los plazos de entrega.`;
+    } else if (resolutivityIndex < -0.5) {
+        resolutivityAnalysis = `Tendencia hacia un perfil <strong>${resQual.text.toLowerCase()}</strong>. Se recomienda establecer objetivos acotados, responsables directos y revisiones periódicas de avance.`;
+    } else {
+        resolutivityAnalysis = `Índice <strong>${resQual.text.toLowerCase()}</strong>. Mantiene un margen saludable entre la ejecución rigurosa y la flexibilidad para explorar alternativas.`;
+    }
+
+    let reportHtml = `
+        <div class="report-container">
+            <!-- Cabecera Ejecutiva -->
+            <div class="report-header">
+                <div>
+                    <h1 class="report-title">Informe de Composición y Roles de Equipo</h1>
+                    <p class="report-subtitle">Proyecto Magnes · Diagnóstico basado en Modelo TRIAD</p>
+                </div>
+                <div class="report-meta">
+                    <div><strong>Fecha:</strong> ${currentDate}</div>
+                    <div><strong>Tamaño del equipo:</strong> ${membersData.length} integrantes</div>
+                    <div><strong>Composición:</strong> ${manualCount} evaluados · ${autoCount} sugeridos</div>
+                </div>
+            </div>
+
+            <!-- Marco Teórico Resumido -->
+            <div class="report-intro-box">
+                <strong>Base Científica (Modelo TRIAD):</strong> Fundamentado en la investigación de Driskell, Driskell, Burke y Salas (2017), este diagnóstico evalúa el comportamiento grupal en tres ejes conductuales (<em>Directividad, Sociabilidad y Orientación a la Tarea</em>) para proyectar 13 roles funcionales y detectar equilibrios, redundancias o riesgos de fricción.
+            </div>
+
+            <!-- Tarjetas KPI de Índices Grupales -->
+            <h2 class="report-section-title">1. Índices Globales del Equipo</h2>
+            <div class="report-kpi-grid">
+                <div class="report-kpi-card">
+                    <div class="report-kpi-label">Directividad</div>
+                    <div class="report-kpi-value">${dominanceIndex.toFixed(2)}</div>
+                    <span class="report-badge badge-${domQual.class}">${domQual.text}</span>
+                </div>
+                <div class="report-kpi-card">
+                    <div class="report-kpi-label">Sociabilidad</div>
+                    <div class="report-kpi-value">${sociabilityIndex.toFixed(2)}</div>
+                    <span class="report-badge badge-${socQual.class}">${socQual.text}</span>
+                </div>
+                <div class="report-kpi-card">
+                    <div class="report-kpi-label">Orientación a la Tarea</div>
+                    <div class="report-kpi-value">${resolutivityIndex.toFixed(2)}</div>
+                    <span class="report-badge badge-${resQual.class}">${resQual.text}</span>
+                </div>
+            </div>
+
+            <!-- Diagnóstico Cruzado -->
+            <div class="report-card report-card-synergy">
+                <h3 class="report-card-title">Sinergia Grupal: ${crossDiagnosis.profile}</h3>
+                <p style="margin: 0;">${crossDiagnosis.advice}</p>
+            </div>
+
+            <!-- Análisis por Dimensión -->
+            <div class="report-card">
+                <h4 class="report-card-title">Desglose por Eje Conductual</h4>
+                <p style="margin: 0 0 4px 0;">• <strong>Directividad:</strong> ${dominanceAnalysis}</p>
+                <p style="margin: 0 0 4px 0;">• <strong>Sociabilidad:</strong> ${sociabilityAnalysis}</p>
+                <p style="margin: 0;">• <strong>Orientación a la Tarea:</strong> ${resolutivityAnalysis}</p>
+            </div>
+
+            <!-- Auditoría de Roles: Redundancias, Vacíos y Alertas -->
+            <h2 class="report-section-title">2. Auditoría de Roles y Riesgos</h2>
+            <div class="report-card">
+                <h4 class="report-card-title">Cobertura Funcional del Equipo</h4>
+                <p style="margin: 0 0 6px 0;">
+                    <strong>Redundancias detectadas:</strong> 
+                    ${roleDiagnostics.redundancies.length > 0 
+                        ? `Coincidencia en ${roleDiagnostics.redundancies.join(', ')}. Conviene delimitar funciones para evitar solapamientos.` 
+                        : 'No se observan duplicidades significativas de roles.'}
+                </p>
+                <p style="margin: 0;">
+                    <strong>Vacíos funcionales:</strong> 
+                    ${roleDiagnostics.missingFunctions.length > 0 
+                        ? `<br/>- ${roleDiagnostics.missingFunctions.join('<br/>- ')}` 
+                        : 'El equipo cubre las tres macro-funciones principales (Dirección, Cohesión y Ejecución).'}
+                </p>
+            </div>
+    `;
+
+    // Bloque condicional de alerta si existen roles negativos
+    if (roleDiagnostics.negativeMembers.length > 0) {
+        reportHtml += `
+            <div class="report-card report-card-alert">
+                <h4 class="report-card-title" style="color: #b91c1c;">Alertas de Comportamiento y Pautas de Intervención</h4>
+                ${roleDiagnostics.negativeMembers.map(item => `
+                    <p style="margin: 0 0 5px 0;">
+                        <strong>${item.name}</strong> (Perfil afín a <em>${item.role}</em>): ${getNegativeRoleIntervention(item.role)}
+                    </p>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    // Fichas Individuales con Barras Visuales
+    reportHtml += `<h2 class="report-section-title">3. Perfil Individual de los Integrantes</h2>`;
+
+    membersData.forEach((member, index) => {
+        const role = getRecommendedRole(member);
+        const name = member.type === 'Automático' ? `Integrante Sugerido ${index + 1}` : member.name;
+        const typeBadge = member.type === 'Automático' 
+            ? `<span class="report-badge badge-good">Sugerido IA</span>` 
+            : `<span class="report-badge badge-neutral">Evaluado</span>`;
+        const roleBadgeClass = role.isAlert ? 'badge-alert' : 'badge-excellent';
+
+        const domDesc = getMetricDescription('dominance', member.dominance);
+        const socDesc = getMetricDescription('sociability', member.sociability);
+        const resDesc = getMetricDescription('resolutivity', member.resolutivity);
+
+        reportHtml += `
+            <div class="report-card">
+                <div class="report-card-title">
+                    <span>${name} &nbsp;${typeBadge}</span>
+                    <span class="report-badge ${roleBadgeClass}">Rol: ${role.name}</span>
+                </div>
+                ${buildMetricBarHtml('Directividad', member.dominance, domDesc)}
+                ${buildMetricBarHtml('Sociabilidad', member.sociability, socDesc)}
+                ${buildMetricBarHtml('Orientación Tarea', member.resolutivity, resDesc)}
+            </div>
+        `;
+    });
+
+    reportHtml += `
+            <div class="report-footer">
+                Informe generado automáticamente por Proyecto Magnes · Los resultados constituyen una guía orientativa de dinámica grupal basada en el modelo TRIAD.
+            </div>
+        </div>
+    `;
+
+    return reportHtml;
+}
     </script>
 
 </body>
