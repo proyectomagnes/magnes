@@ -187,7 +187,7 @@
           margin-bottom: 4px;
       }
 
-      /* Tablas estándar para resumen de equipo y tareas */
+      /* Tablas estándar */
       .report-table {
           width: 100%;
           border-collapse: collapse;
@@ -217,7 +217,14 @@
           break-inside: avoid;
       }
 
-      /* Bloques ligeros para el listado individual (evita truncado de tablas largas) */
+      /* Bloques ligeros para descripciones de roles y listado individual */
+      .role-def-item {
+          padding: 6px 0;
+          border-bottom: 1px solid #e2e8f0;
+          page-break-inside: avoid;
+          break-inside: avoid;
+      }
+
       .member-item {
           padding: 7px 0;
           border-bottom: 1px solid #e2e8f0;
@@ -408,7 +415,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="dominanceSlider1" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="dominanceSlider1" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                             <!-- Item 2 -->
@@ -428,7 +435,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="dominanceSlider2" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="dominanceSlider2" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                             <!-- Item 3 -->
@@ -448,7 +455,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="dominanceSlider3" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="dominanceSlider3" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                         </div>
@@ -475,14 +482,14 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="sociabilitySlider1" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="sociabilitySlider1" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                             <!-- Item 2 -->
                             <div>
                                 <div class="flex justify-between text-sm text-gray-500">
                                     <span>Interactúa de forma poco cercana (mantiene intercambios más distantes, se limita a lo estrictamente necesario y muestra poca disposición a generar conexión interpersonal)</span>
-                                    <span>Interactúa de forma cercana (muestra confianza, se implica en las conversaciones, comparte impresiones y facilita que los demás se sientan cómodos interactuando) </span>
+                                    <span>Interactúa de forma cercana (muestra confianza, se implica en las conversaciones, comparte impresiones y facilita que los demás se sientan cómodos interactuando)</span>
                                 </div>
                                 <div class="slider-container mt-1">
                                     <div class="slider-track-bg"></div>
@@ -495,13 +502,13 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="sociabilitySlider2" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="sociabilitySlider2" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                             <!-- Item 3 -->
                             <div>
                                 <div class="flex justify-between text-sm text-gray-500">
-                                    <span>Presta poca atención a las intervenciones de los demás </span>
+                                    <span>Presta poca atención a las intervenciones de los demás</span>
                                     <span>Presta atención a las intervenciones de los demás</span>
                                 </div>
                                 <div class="slider-container mt-1">
@@ -515,7 +522,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="sociabilitySlider3" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="sociabilitySlider3" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                         </div>
@@ -542,7 +549,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="resolutivitySlider1" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="resolutivitySlider1" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                             <!-- Item 2 -->
@@ -562,7 +569,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="resolutivitySlider2" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="resolutivitySlider2" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                             <!-- Item 3 -->
@@ -582,7 +589,7 @@
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                         <span class="dot" style="background-color: #c48b0a;"></span>
                                     </div>
-                                    <input type="range" id="resolutivitySlider3" min="-3" max="3" step="0.01" value="0">
+                                    <input type="range" id="resolutivitySlider3" min="-3" max="3" step="0.5" value="0">
                                 </div>
                             </div>
                         </div>
@@ -666,22 +673,74 @@
         let membersAdded = 0;
         let isQualitativeView = true;
 
-        // Roles y sus valores normalizados (Driskell et al., 2017 - Table 2)
+        // Roles, coordenadas (Driskell et al., 2017) y descripciones en castellano de España
         const ROLES_DATA = [
-            { name: "Team Leader", dominance: 2.35, sociability: 0.04, resolutivity: 2.58, type: 'positive', desc: "Guía, estructura y coordina la actividad del grupo hacia la consecución de objetivos." },
-            { name: "Task Motivator", dominance: 1.96, sociability: -0.04, resolutivity: 0.64, type: 'positive', desc: "Actúa como segundo al mando; impulsa, estimula y dinamiza al equipo hacia la acción." },
-            { name: "Social", dominance: -0.45, sociability: 2.84, resolutivity: -0.03, type: 'positive', desc: "Mantiene la armonía socioemocional, media en desacuerdos y refuerza la cohesión." },
-            { name: "Coordinator", dominance: 0.56, sociability: 2.15, resolutivity: 1.69, type: 'positive', desc: "Articula tareas internas y externas, mantiene abiertos los canales de comunicación y facilita la participación." },
-            { name: "Follower", dominance: -2.39, sociability: 1.24, resolutivity: 0.56, type: 'positive', desc: "Escucha activamente, coopera, construye sobre las ideas ajenas y apoya la ejecución." },
-            { name: "Teamwork Support", dominance: -2.15, sociability: 0.11, resolutivity: 2.24, type: 'positive', desc: "Implementa planes, documenta procesos, sintetiza información y respalda la operativa." },
-            { name: "Evaluator", dominance: -0.10, sociability: -2.23, resolutivity: 2.30, type: 'positive', desc: "Inspecciona propuestas con rigor analítico y enfoque objetivo en hechos y datos." },
-            { name: "Problem Solver", dominance: -0.25, sociability: 0.02, resolutivity: 1.28, type: 'positive', desc: "Genera ideas, solicita información, detecta inconsistencias y propone soluciones." },
-            { name: "Task Completer", dominance: -0.56, sociability: -0.08, resolutivity: 2.64, type: 'positive', desc: "Asegura el cierre meticuloso, ordenado y puntual de los entregables y procedimientos." },
+            { 
+                name: "Team Leader", dominance: 2.35, sociability: 0.04, resolutivity: 2.58, type: 'positive',
+                desc: "Guía, estructura y organiza la actividad del grupo hacia la consecución de los objetivos.",
+                fullDesc: "Perfil de liderazgo directivo y orientado a resultados (alta Directividad y alta Orientación a la Tarea, con Sociabilidad intermedia). Engloba funciones de líder de tarea, presidente u organizador. Sus conductas habituales consisten en convocar al grupo, poner orden, estructurar los objetivos, marcar pautas claras, explicar procedimientos y supervisar el avance colectivo hacia la meta."
+            },
+            { 
+                name: "Task Motivator", dominance: 1.96, sociability: -0.04, resolutivity: 0.64, type: 'positive',
+                desc: "Actúa como segundo al mando; impulsa, estimula y dinamiza al equipo hacia la acción.",
+                fullDesc: "Actúa como un 'segundo al mando' o dinamizador operativo (Directividad moderadamente alta, con Orientación a la Tarea y Sociabilidad en niveles medios). Agrupa roles como energizador, retador o impulsor. Se caracteriza por animar al grupo para que no decaiga el ritmo, incitar a la acción, combatir la pasividad y mantener alta la implicación operativa."
+            },
+            { 
+                name: "Social", dominance: -0.45, sociability: 2.84, resolutivity: -0.03, type: 'positive',
+                desc: "Mantiene la armonía socioemocional, media en los desacuerdos y refuerza la cohesión.",
+                fullDesc: "Referente socioemocional del equipo (muy alta Sociabilidad, con Directividad y Orientación a la Tarea en niveles medios). Incluye roles como armonizador, animador, conciliador o apoyo interpersonal. Sus conductas clave consisten en rebajar tensiones mediante el humor o la cercanía, mediar en conflictos, reconocer las aportaciones ajenas, mostrar calidez y cuidar la moral y la unión del grupo."
+            },
+            { 
+                name: "Coordinator", dominance: 0.56, sociability: 2.15, resolutivity: 1.69, type: 'positive',
+                desc: "Articula tareas internas y externas, mantiene abiertos los canales de comunicación y facilita la participación.",
+                fullDesc: "Perfil integrador que conecta la dimensión relacional con la operativa (alta Sociabilidad, Orientación a la Tarea moderadamente alta y Directividad media). Comprende roles de coordinador, facilitador o enlace interno y externo. Sus comportamientos incluyen encajar actividades entre subgrupos, aclarar dependencias entre tareas, mantener fluidos los canales de comunicación y fomentar una participación equilibrada."
+            },
+            { 
+                name: "Follower", dominance: -2.39, sociability: 1.24, resolutivity: 0.56, type: 'positive',
+                desc: "Escucha activamente, coopera, construye sobre las ideas ajenas y apoya la ejecución.",
+                fullDesc: "Rol complementario y recíproco al liderazgo (baja Directividad, Sociabilidad moderadamente alta y Orientación a la Tarea media). Incluye perfiles de colaborador, seguidor activo y buen oyente. Se distingue por escuchar con atención, desarrollar las propuestas de los demás, aceptar consensos, evitar roces innecesarios y cooperar de forma constante en el trabajo diario."
+            },
+            { 
+                name: "Teamwork Support", dominance: -2.15, sociability: 0.11, resolutivity: 2.24, type: 'positive',
+                desc: "Ejecuta planes, documenta procesos, sintetiza información y respalda el trabajo diario.",
+                fullDesc: "Apoyo operativo discreto y muy fiable (baja Directividad, Sociabilidad intermedia y alta Orientación a la Tarea). Agrupa roles como colaborador de apoyo, sintetizador, secretario o responsable de actas y registros. Sus conductas habituales consisten en llevar los planes a la práctica, documentar acuerdos, recopilar y resumir información, preparar reuniones y arrimar el hombro para sacar adelante los objetivos."
+            },
+            { 
+                name: "Evaluator", dominance: -0.10, sociability: -2.23, resolutivity: 2.30, type: 'positive',
+                desc: "Revisa propuestas con rigor analítico y un enfoque objetivo basado en hechos y datos.",
+                fullDesc: "Rol de control de calidad y análisis objetivo (alta Orientación a la Tarea, baja Sociabilidad y Directividad media). Engloba funciones de monitor-evaluador, inspector o supervisor. Se caracteriza por analizar propuestas con frialdad y rigor, centrarse en hechos, cifras y evidencias objetivas, detectar fallos lógicos y velar por la precisión técnica sin dejarse llevar por lo emocional."
+            },
+            { 
+                name: "Problem Solver", dominance: -0.25, sociability: 0.02, resolutivity: 1.28, type: 'positive',
+                desc: "Genera ideas, solicita información, detecta incoherencias y propone soluciones.",
+                fullDesc: "Motor cognitivo y de resolución de problemas (Orientación a la Tarea moderadamente alta, con Directividad y Sociabilidad medias). Reúne roles como creador de ideas, clarificador, buscador y proveedor de información. Sus conductas consisten en plantear preguntas clave, aportar datos y criterios fundamentados, señalar incoherencias, sintetizar alternativas y proponer soluciones prácticas."
+            },
+            { 
+                name: "Task Completer", dominance: -0.56, sociability: -0.08, resolutivity: 2.64, type: 'positive',
+                desc: "Asegura el cierre meticuloso, ordenado y puntual de los entregables y procedimientos.",
+                fullDesc: "Garante del acabado final y del cumplimiento de plazos (muy alta Orientación a la Tarea, con Sociabilidad y Directividad medias-bajas). Incluye perfiles de finalizador, metódico y técnico de precisión. Sus comportamientos se centran en cuidar al máximo los detalles, respetar los procedimientos y plazos establecidos, mantener el orden y rematar con rigor cada entregable."
+            },
             // Roles negativos
-            { name: "Power Seeker", dominance: 2.13, sociability: -2.43, resolutivity: -0.43, type: 'negative', desc: "Busca imponer autoridad y control de forma autocrática, interrumpiendo o desvalorizando a otros." },
-            { name: "Critic", dominance: -0.30, sociability: -1.31, resolutivity: -0.92, type: 'negative', desc: "Adopta una postura escéptica o de bloqueo constante que puede poner a la defensiva al grupo." },
-            { name: "Attention Seeker", dominance: 0.50, sociability: 0.00, resolutivity: -2.46, type: 'negative', desc: "Busca protagonismo o simpatía sin asumir responsabilidades operativas reales." },
-            { name: "Negative", dominance: -2.22, sociability: -2.22, resolutivity: -2.75, type: 'negative', desc: "Manifiesta desinterés, tensión o pesimismo que erosiona la moral colectiva." },
+            { 
+                name: "Power Seeker", dominance: 2.13, sociability: -2.43, resolutivity: -0.43, type: 'negative',
+                desc: "Busca imponer autoridad y control de forma autoritaria, interrumpiendo o desvalorizando a otros.",
+                fullDesc: "Rol disfuncional de dominancia autoritaria (alta Directividad, muy baja Sociabilidad y Orientación a la Tarea media-baja). Agrupa conductas de dominador, acaparador o líder desafiante. Tiende a imponer su criterio, interrumpir las intervenciones ajenas, desmerecer a otros compañeros y disputar el control del grupo. Aunque suele desgastar al equipo, puede resultar útil de forma puntual en emergencias que exijan mando inmediato."
+            },
+            { 
+                name: "Critic", dominance: -0.30, sociability: -1.31, resolutivity: -0.92, type: 'negative',
+                desc: "Adopta una postura escéptica o de bloqueo constante que puede poner a la defensiva al grupo.",
+                fullDesc: "Rol disfuncional de oposición sistemática (Orientación a la Tarea y Sociabilidad moderadamente bajas, con Directividad media). Comprende perfiles de bloqueador, antagonista o buscador de fallos. Se manifiesta mediante escepticismo constante, cinismo, juicios negativos hacia las ideas ajenas y resistencia al avance, poniendo a la defensiva al resto del equipo."
+            },
+            { 
+                name: "Attention Seeker", dominance: 0.50, sociability: 0.00, resolutivity: -2.46, type: 'negative',
+                desc: "Busca protagonismo o simpatía sin asumir responsabilidades reales en el trabajo.",
+                fullDesc: "Rol disfuncional de evasión del trabajo (muy baja Orientación a la Tarea, con Sociabilidad y Directividad medias). Engloba perfiles que buscan reconocimiento, simpatía o protagonismo personal sin aportar esfuerzo real al trabajo colectivo, desviando la atención del grupo hacia asuntos personales o delegando siempre las tareas complejas en los demás."
+            },
+            { 
+                name: "Negative", dominance: -2.22, sociability: -2.22, resolutivity: -2.75, type: 'negative',
+                desc: "Manifiesta desinterés, tensión o pesimismo que perjudica la moral colectiva.",
+                fullDesc: "Rol disfuncional de retraimiento y actitud negativa (puntuaciones muy bajas en Directividad, Sociabilidad y Orientación a la Tarea). Representa perfiles pesimistas, apáticos, tensos o desconectados que muestran una actitud de 'no va a salir', se quejan con frecuencia, evitan implicarse y contagian desánimo al conjunto del equipo."
+            },
         ];
         
         const positiveRoles = ROLES_DATA.filter(role => role.type === 'positive');
@@ -738,10 +797,20 @@
             }
 
             if (bestMatch.role.type === 'negative') {
-                return { name: bestMatch.role.name, isAlert: true, desc: bestMatch.role.desc };
+                return { 
+                    name: bestMatch.role.name, 
+                    isAlert: true, 
+                    desc: bestMatch.role.desc,
+                    fullDesc: bestMatch.role.fullDesc 
+                };
             }
             
-            return { name: bestMatch.role.name, isAlert: false, desc: bestMatch.role.desc };
+            return { 
+                name: bestMatch.role.name, 
+                isAlert: false, 
+                desc: bestMatch.role.desc,
+                fullDesc: bestMatch.role.fullDesc 
+            };
         }
 
         function getMetricDescription(metricType, value) {
@@ -763,13 +832,13 @@
                     if (scaledValue >= 0.5) return 'Algo sociable';
                     if (scaledValue > -0.5 && scaledValue < 0.5) return 'Neutro';
                     if (scaledValue <= -2.5) return 'Nada sociable';
-                    if (scaledValue <= -1.5) return 'No muy sociable';
-                    if (scaledValue <= -0.5) return 'Poco sociable';
+                    if (scaledValue <= -1.5) return 'Poco sociable';
+                    if (scaledValue <= -0.5) return 'Algo reservado';
                     break;
                 case 'resolutivity':
-                    if (scaledValue >= 2.5) return 'Muy focalizado';
-                    if (scaledValue >= 1.5) return 'Focalizado';
-                    if (scaledValue >= 0.5) return 'Algo focalizado';
+                    if (scaledValue >= 2.5) return 'Muy centrado';
+                    if (scaledValue >= 1.5) return 'Centrado';
+                    if (scaledValue >= 0.5) return 'Algo centrado';
                     if (scaledValue > -0.5 && scaledValue < 0.5) return 'Neutro';
                     if (scaledValue <= -2.5) return 'Muy disperso';
                     if (scaledValue <= -1.5) return 'Disperso';
@@ -815,11 +884,11 @@
 
             const labels = {
                 dominance: {
-                    high: 'Excesiva presencia de líderes',
-                    mediumHigh: 'Tendencia a dar órdenes',
+                    high: 'Exceso de perfiles directivos',
+                    mediumHigh: 'Tendencia a dirigir',
                     average: 'Equilibrado',
-                    mediumLow: 'Tendencia a seguir órdenes',
-                    low: 'Excesiva presencia de seguidores'
+                    mediumLow: 'Tendencia a seguir pautas',
+                    low: 'Exceso de perfiles seguidores'
                 },
                 sociability: {
                     high: 'Muy sociable',
@@ -829,8 +898,8 @@
                     low: 'Muy baja sociabilidad'
                 },
                 resolutivity: {
-                    high: 'Muy focalizado',
-                    mediumHigh: 'Focalizado',
+                    high: 'Muy centrado en la tarea',
+                    mediumHigh: 'Centrado en la tarea',
                     average: 'Equilibrado',
                     mediumLow: 'Disperso',
                     low: 'Muy disperso'
@@ -1147,7 +1216,7 @@
         });
 
         // =========================================================
-        // GENERADOR DE INFORME DIAGNÓSTICO EDITORIAL (PAGINACIÓN SEGURA)
+        // GENERADOR DE INFORME DIAGNÓSTICO EDITORIAL (CASTELLANO DE ESPAÑA)
         // =========================================================
 
         generateReportBtn.addEventListener('click', () => {
@@ -1194,37 +1263,37 @@
 
             if (highDom && lowSoc && highRes) {
                 return {
-                    profile: "Equipo Ejecutivo de Alto Rendimiento (Riesgo de Fricción Interpersonal)",
-                    advice: "Perfil fuertemente orientado a resultados rápidos y toma de decisiones firme, pero con baja cohesión socioemocional. Muy eficaz en entornos de crisis o entregas urgentes. Se recomienda establecer canales formales de retroalimentación para evitar conflictos de ego y desgaste del clima grupal."
+                    profile: "Equipo Ejecutivo de Alto Rendimiento (Riesgo de Roce Interpersonal)",
+                    advice: "Perfil muy orientado a obtener resultados rápidos y tomar decisiones con firmeza, pero con poca cohesión afectiva. Resulta muy eficaz en situaciones de crisis o entregas urgentes. Conviene habilitar espacios claros de comunicación para evitar choques de protagonismo y desgaste en el ambiente de trabajo."
                 };
             }
             if (lowDom && highSoc && lowRes) {
                 return {
                     profile: "Equipo Cohesivo y Armónico (Riesgo de Dispersión Operativa)",
-                    advice: "Excelente clima laboral, empatía y comunicación fluida, pero carece de dirección clara y empuje hacia el cierre de tareas. Ideal para fases iniciales de ideación o tareas sociales. Requiere designar un coordinador explícito y fijar hitos semanales medibles."
+                    advice: "Excelente clima laboral, cercanía y comunicación fluida, pero falta una dirección clara y empuje para cerrar las tareas. Encaja muy bien en fases iniciales de generación de ideas o tareas de atención social. Requiere nombrar un coordinador claro y fijar objetivos semanales concretos."
                 };
             }
             if (highDom && highSoc && highRes) {
                 return {
-                    profile: "Equipo Proactivo y Expansivo (Riesgo de Solapamiento de Roles)",
-                    advice: "Gran energía colectiva, alta iniciativa y fuerte implicación tanto social como operativa. El principal riesgo es la duplicidad de esfuerzos o disputas por el liderazgo. Conviene delimitar claramente las áreas de responsabilidad de cada integrante."
+                    profile: "Equipo Proactivo y Expansivo (Riesgo de Solapamiento de Funciones)",
+                    advice: "Mucha energía colectiva, iniciativa y fuerte implicación tanto en el plano personal como en el trabajo. El principal riesgo es duplicar esfuerzos o competir por el liderazgo. Conviene delimitar bien las responsabilidades de cada integrante."
                 };
             }
             if (lowDom && lowSoc && highRes) {
                 return {
-                    profile: "Equipo Técnico Autónomo (Riesgo de Trabajo en Silos)",
-                    advice: "Alta capacidad de ejecución individual y atención al detalle, pero con poca interacción espontánea y liderazgo difuso. Funciona de forma óptima en tareas de producción o análisis compartimentado; se aconsejan reuniones breves de sincronización para mantener la visión global."
+                    profile: "Equipo Técnico Autónomo (Riesgo de Trabajo Aislado)",
+                    advice: "Alta capacidad de ejecución individual y rigor en los detalles, pero con poca interacción espontánea y un liderazgo poco definido. Funciona muy bien en tareas técnicas compartimentadas; se recomiendan reuniones breves de seguimiento para no perder la visión de conjunto."
                 };
             }
             if (lowRes) {
                 return {
                     profile: "Equipo con Déficit de Ejecución y Cierre",
-                    advice: "La puntuación global en orientación a la tarea sugiere dificultades para mantener el foco o cerrar entregables a tiempo. Es prioritario incorporar perfiles resolutivos (Task Completer / Problem Solver) o fragmentar los objetivos en subtareas cortas con seguimiento."
+                    advice: "La puntuación global en orientación a la tarea indica dificultades para mantener el foco o entregar el trabajo a tiempo. Es prioritario incorporar perfiles resolutivos (Task Completer o Problem Solver) o dividir los objetivos en entregas cortas con seguimiento cercano."
                 };
             }
             return {
-                profile: "Equipo Equilibrado y Adaptable",
-                advice: "La combinación de dimensiones muestra una distribución funcional sin extremos críticos. El grupo dispone de suficiente flexibilidad para alternar entre fases de planificación, debate interpersonal y ejecución técnica según lo exija el proyecto."
+                profile: "Equipo Equilibrado y Polivalente",
+                advice: "La combinación de dimensiones muestra un reparto funcional sin desequilibrios acusados. El grupo cuenta con suficiente flexibilidad para alternar entre fases de planificación, debate interno y ejecución técnica según lo exija el proyecto."
             };
         }
 
@@ -1232,59 +1301,59 @@
             let realisticFit, realisticNotes;
             if (res >= 0.35 && dom <= 0.45) {
                 realisticFit = "Alto";
-                realisticNotes = "La alta orientación a la tarea sin exceso de fricción jerárquica favorece la producción técnica, el rigor y el cumplimiento de plazos.";
+                realisticNotes = "La elevada orientación a la tarea sin exceso de jerarquía favorece la producción técnica, el rigor y el cumplimiento de plazos.";
             } else if (res >= 0.0) {
                 realisticFit = "Moderado";
-                realisticNotes = "Capacidad aceptable de ejecución, aunque podría optimizarse reforzando perfiles detallistas (<em>Task Completer</em> / <em>Problem Solver</em>).";
+                realisticNotes = "Capacidad aceptable de ejecución, aunque mejoraría reforzando perfiles metódicos y detallistas (<em>Task Completer</em> o <em>Problem Solver</em>).";
             } else {
                 realisticFit = "Bajo";
-                realisticNotes = "Baja orientación a la tarea; alto riesgo de retrasos o dispersión en entornos técnicos o de producción exigentes.";
+                realisticNotes = "Baja orientación a la tarea; existe un riesgo elevado de retrasos o dispersión en entornos técnicos o de producción exigentes.";
             }
 
             let socialFit, socialNotes;
             if (soc >= 0.35 && dom <= 0.45) {
                 socialFit = "Alto";
-                socialNotes = "La elevada sociabilidad y ausencia de autoritarismo facilitan la escucha, el apoyo mutuo, la mediación y el trabajo con personas.";
+                socialNotes = "La alta sociabilidad y ausencia de autoritarismo facilitan la escucha, el apoyo mutuo, la mediación y el trato con personas.";
             } else if (soc >= 0.0) {
                 socialFit = "Moderado";
-                socialNotes = "Clima funcional, pero requiere cuidar activamente los espacios de cohesión y comunicación interpersonal.";
+                socialNotes = "Buen ambiente general, pero conviene cuidar activamente los espacios de diálogo y cohesión del grupo.";
             } else {
                 socialFit = "Bajo";
-                socialNotes = "Baja calidez interpersonal; pueden surgir tensiones o frialdad en tareas que exijan empatía, consenso o atención al cliente.";
+                socialNotes = "Escasa cercanía interpersonal; pueden surgir tensiones o frialdad en tareas que exijan empatía, consenso o atención directa al público.";
             }
 
             const isBalanced = Math.abs(dom) <= 0.45 && Math.abs(soc) <= 0.55 && res >= 0.15;
             let complexFit, complexNotes;
             if (isBalanced) {
                 complexFit = "Alto";
-                complexNotes = "El equilibrio tridimensional permite alternar eficazmente entre planificación, resolución de problemas, debate y cierre.";
+                complexNotes = "El equilibrio en las tres dimensiones permite alternar con soltura entre planificación, resolución de problemas, debate y cierre.";
             } else if (res >= -0.1) {
                 complexFit = "Moderado";
-                complexNotes = "El equipo es viable, pero presenta asimetrías en algún eje que conviene compensar mediante reparto explícito de funciones.";
+                complexNotes = "El equipo es viable, pero presenta descompensaciones en algún eje que conviene equilibrar repartiendo bien las funciones.";
             } else {
                 complexFit = "Bajo";
-                complexNotes = "Descompensación estructural que dificultará sostener proyectos largos con múltiples fases interdependientes.";
+                complexNotes = "Desajuste estructural que dificultará sacar adelante proyectos largos con varias fases interdependientes.";
             }
 
             let crisisFit, crisisNotes;
             if (dom >= 0.35 && res >= 0.25) {
                 crisisFit = "Alto";
-                crisisNotes = "Fuerte capacidad de mando y reacción rápida bajo presión; la alta directividad acelera la toma de decisiones críticas.";
+                crisisNotes = "Fuerte capacidad de mando y reacción rápida bajo presión; la alta directividad agiliza la toma de decisiones críticas.";
             } else if (dom >= 0.0 && res >= 0.0) {
                 crisisFit = "Moderado";
-                crisisNotes = "Respuesta adecuada si se designa previamente un responsable único que centralice las decisiones en momentos críticos.";
+                crisisNotes = "Respuesta adecuada si se designa de antemano a un responsable único que centralice las decisiones en momentos críticos.";
             } else {
                 crisisFit = "Bajo";
-                crisisNotes = "Tendencia excesiva a la deliberación o pasividad; puede sufrir parálisis ante imprevistos urgentes.";
+                crisisNotes = "Exceso de deliberación o pasividad; el grupo puede quedarse bloqueado ante imprevistos urgentes.";
             }
 
             let sizeAdvice = "";
             if (teamSize <= 3) {
-                sizeAdvice = `En grupos de 2 a 3 personas (${teamSize} integrantes), la evidencia sugiere priorizar perfiles <em>generalistas</em> (puntuaciones moderadas en los tres ejes) capaces de asumir múltiples funciones de forma flexible, evitando perfiles excesivamente polarizados.`;
+                sizeAdvice = `En grupos de 2 a 3 personas (${teamSize} integrantes), la evidencia recomienda priorizar perfiles <em>polivalentes</em> (puntuaciones intermedias en los tres ejes) capaces de asumir distintas funciones con flexibilidad, evitando perfiles demasiado extremos.`;
             } else if (teamSize <= 6) {
-                sizeAdvice = `Este tamaño mediano (${teamSize} integrantes) resulta óptimo para combinar un núcleo equilibrado con roles diferenciados (al menos un referente de dirección, un facilitador social y perfiles de ejecución/cierre).`;
+                sizeAdvice = `Este tamaño mediano (${teamSize} integrantes) resulta idóneo para combinar una base equilibrada con roles diferenciados (al menos un referente de dirección, un facilitador social y perfiles de ejecución y cierre).`;
             } else {
-                sizeAdvice = `En grupos grandes (${teamSize} integrantes) es viable incorporar perfiles <em>especialistas</em> en cada eje del modelo TRIAD, pero aumenta el riesgo de colisión de roles; conviene contar con un rol de <em>Coordinator</em> activo.`;
+                sizeAdvice = `En grupos grandes (${teamSize} integrantes) es posible incorporar perfiles <em>especialistas</em> en cada eje del modelo TRIAD, pero aumenta el riesgo de solapamiento; conviene contar con un rol de <em>Coordinator</em> activo.`;
             }
 
             return {
@@ -1300,6 +1369,7 @@
 
         function analyzeTeamRoles(members) {
             const roleCounts = {};
+            const roleMembersMap = {};
             const negativeMembers = [];
             const positiveRolesPresent = new Set();
 
@@ -1307,11 +1377,29 @@
                 const name = m.type === 'Automático' ? `Integrante Sugerido ${idx + 1}` : m.name;
                 const roleInfo = getRecommendedRole(m);
                 roleCounts[roleInfo.name] = (roleCounts[roleInfo.name] || 0) + 1;
+                if (!roleMembersMap[roleInfo.name]) {
+                    roleMembersMap[roleInfo.name] = [];
+                }
+                roleMembersMap[roleInfo.name].push(name);
 
                 if (roleInfo.isAlert) {
                     negativeMembers.push({ name, role: roleInfo.name });
                 } else {
                     positiveRolesPresent.add(roleInfo.name);
+                }
+            });
+
+            const uniqueTeamRoles = [];
+            const seenRoles = new Set();
+            members.forEach((m) => {
+                const roleInfo = getRecommendedRole(m);
+                if (!seenRoles.has(roleInfo.name)) {
+                    seenRoles.add(roleInfo.name);
+                    const fullRoleObj = ROLES_DATA.find(r => r.name === roleInfo.name);
+                    uniqueTeamRoles.push({
+                        ...fullRoleObj,
+                        assignedMembers: roleMembersMap[roleInfo.name]
+                    });
                 }
             });
 
@@ -1325,26 +1413,26 @@
 
             const missingFunctions = [];
             if (!leadershipRoles.some(r => positiveRolesPresent.has(r))) {
-                missingFunctions.push("<strong>Dirección y Coordinación:</strong> Ausencia de roles como <em>Team Leader</em>, <em>Task Motivator</em> o <em>Coordinator</em> (riesgo de falta de rumbo en fases iniciales).");
+                missingFunctions.push("<strong>Dirección y Coordinación:</strong> Faltan roles como <em>Team Leader</em>, <em>Task Motivator</em> o <em>Coordinator</em> (riesgo de falta de rumbo en las fases iniciales).");
             }
             if (!socialRoles.some(r => positiveRolesPresent.has(r))) {
-                missingFunctions.push("<strong>Cohesión y Mantenimiento Grupal:</strong> Ausencia de roles como <em>Social</em> o <em>Follower</em> (riesgo de desgaste relacional en fases intermedias).");
+                missingFunctions.push("<strong>Cohesión y Cuidado del Grupo:</strong> Faltan roles como <em>Social</em> o <em>Follower</em> (riesgo de desgaste en las relaciones durante el proyecto).");
             }
             if (!executionRoles.some(r => positiveRolesPresent.has(r))) {
-                missingFunctions.push("<strong>Ejecución, Análisis y Cierre:</strong> Ausencia de roles como <em>Task Completer</em>, <em>Problem Solver</em> o <em>Evaluator</em> (riesgo de incumplimiento en etapas finales).");
+                missingFunctions.push("<strong>Ejecución, Análisis y Cierre:</strong> Faltan roles como <em>Task Completer</em>, <em>Problem Solver</em> o <em>Evaluator</em> (riesgo de incumplimiento en la recta final).");
             }
 
-            return { redundancies, missingFunctions, negativeMembers };
+            return { redundancies, missingFunctions, negativeMembers, uniqueTeamRoles };
         }
 
         function getNegativeRoleIntervention(roleName) {
             const interventions = {
-                "Power Seeker": "Canalizar su alta iniciativa asignándole responsabilidades delimitadas donde tenga autonomía, estableciendo reglas explícitas de decisión compartida. Nota: este perfil puede resultar funcional únicamente en situaciones de emergencia que exijan mando inmediato.",
-                "Critic": "Aprovechar su capacidad analítica como 'abogado del diablo' constructivo, pidiéndole que acompañe cada objeción con una alternativa viable durante las revisiones.",
-                "Attention Seeker": "Estructurar turnos de palabra acotados en las reuniones y vincular su visibilidad dentro del grupo al cumplimiento de entregables concretos.",
-                "Negative": "Realizar un seguimiento individual para identificar causas de desmotivación o bloqueo, asignándole tareas cortas con retroalimentación frecuente para evitar el contagio emocional negativo."
+                "Power Seeker": "Canalizar su iniciativa asignándole parcelas de responsabilidad bien delimitadas donde tenga autonomía, pero fijando reglas claras de decisión compartida. Nota: este perfil puede resultar útil únicamente en situaciones de emergencia que exijan mando inmediato.",
+                "Critic": "Aprovechar su capacidad analítica como 'abogado del diablo' constructivo, pidiéndole que acompañe cada objeción con una propuesta de mejora concreta durante las revisiones.",
+                "Attention Seeker": "Ordenar los turnos de palabra en las reuniones y vincular su visibilidad dentro del grupo al cumplimiento de entregables concretos.",
+                "Negative": "Hacer un seguimiento individual para detectar el origen de su desmotivación o bloqueo, asignándole tareas cortas con seguimiento cercano para evitar que el desánimo se contagie al resto."
             };
-            return interventions[roleName] || "Supervisar su integración en las dinámicas grupales y clarificar expectativas de comportamiento.";
+            return interventions[roleName] || "Supervisar su encaje en la dinámica del grupo y aclarar qué se espera de su participación.";
         }
 
         function generateAIReportContent() {
@@ -1367,27 +1455,27 @@
             let dominanceAnalysis, sociabilityAnalysis, resolutivityAnalysis;
 
             if (dominanceIndex > 0.5) {
-                dominanceAnalysis = `Tendencia marcada hacia la <strong>${domQual.toLowerCase()}</strong>. Facilita decisiones ágiles, pero exige moderación para evitar luchas de poder o que los perfiles más participativos eclipsen al resto.`;
+                dominanceAnalysis = `Tendencia marcada hacia un <strong>${domQual.toLowerCase()}</strong>. Agiliza la toma de decisiones, pero requiere moderación para evitar luchas de poder o que los perfiles más activos eclipsen al resto.`;
             } else if (dominanceIndex < -0.5) {
-                dominanceAnalysis = `Predominio de <strong>${domQual.toLowerCase()}</strong>. Fomenta un entorno colaborativo y receptivo, aunque puede ralentizar la toma de decisiones si no se designa un referente claro.`;
+                dominanceAnalysis = `Predominio de un <strong>${domQual.toLowerCase()}</strong>. Favorece un clima colaborativo y receptivo, aunque puede frenar la toma de decisiones si no se designa a alguien que marque el rumbo.`;
             } else {
-                dominanceAnalysis = `Índice <strong>${domQual.toLowerCase()}</strong>. Existe una compensación saludable entre iniciativa directiva y disposición de apoyo, favoreciendo la adaptabilidad.`;
+                dominanceAnalysis = `Índice <strong>${domQual.toLowerCase()}</strong>. Existe una compensación adecuada entre iniciativa directiva y disposición de apoyo, lo que aporta flexibilidad al equipo.`;
             }
 
             if (sociabilityIndex > 0.5) {
-                sociabilityAnalysis = `Equipo <strong>${socQual.toLowerCase()}</strong>. Alta cohesión interpersonal que facilita la confianza, la comunicación abierta y la resolución constructiva de desacuerdos.`;
+                sociabilityAnalysis = `Equipo <strong>${socQual.toLowerCase()}</strong>. Alta cohesión personal que facilita la confianza, el diálogo abierto y la resolución constructiva de desacuerdos.`;
             } else if (sociabilityIndex < -0.5) {
-                sociabilityAnalysis = `Nivel de <strong>${socQual.toLowerCase()}</strong>. El grupo prioriza la tarea sobre el vínculo personal; conviene cuidar los espacios de comunicación para evitar fricciones o aislamiento.`;
+                sociabilityAnalysis = `Nivel de <strong>${socQual.toLowerCase()}</strong>. El grupo antepone la tarea a la relación personal; conviene cuidar la comunicación interna para evitar malentendidos o aislamiento.`;
             } else {
-                sociabilityAnalysis = `Índice <strong>${socQual.toLowerCase()}</strong>. Combina perfiles cercanos que lubrican la relación con integrantes más reservados y centrados en el trabajo individual.`;
+                sociabilityAnalysis = `Índice <strong>${socQual.toLowerCase()}</strong>. Combina perfiles cercanos que facilitan la convivencia con compañeros más reservados y centrados en el trabajo individual.`;
             }
 
             if (resolutivityIndex > 0.5) {
-                resolutivityAnalysis = `Equipo <strong>${resQual.toLowerCase()}</strong>. Alta disciplina, atención al detalle y compromiso con los plazos de entrega.`;
+                resolutivityAnalysis = `Equipo <strong>${resQual.toLowerCase()}</strong>. Destaca por su constancia, atención al detalle y compromiso con los plazos de entrega.`;
             } else if (resolutivityIndex < -0.5) {
-                resolutivityAnalysis = `Tendencia hacia un perfil <strong>${resQual.toLowerCase()}</strong>. Se recomienda establecer objetivos acotados, responsables directos y revisiones periódicas de avance.`;
+                resolutivityAnalysis = `Tendencia hacia un perfil <strong>${resQual.toLowerCase()}</strong>. Se recomienda fijar objetivos acotados, responsables directos y revisiones periódicas de avance.`;
             } else {
-                resolutivityAnalysis = `Índice <strong>${resQual.toLowerCase()}</strong>. Mantiene un margen saludable entre la ejecución rigurosa y la flexibilidad para explorar alternativas.`;
+                resolutivityAnalysis = `Índice <strong>${resQual.toLowerCase()}</strong>. Mantiene un punto medio saludable entre el rigor en la ejecución y la flexibilidad para explorar nuevas vías.`;
             }
 
             let reportHtml = `
@@ -1404,11 +1492,41 @@
 
                     <!-- Introducción Teórica -->
                     <p class="report-p">
-                        <strong>Fundamento Científico (Modelo TRIAD - Driskell, Driskell, Burke y Salas, 2017):</strong> Este diagnóstico sintetiza 154 roles de la literatura científica en <strong>13 clústeres funcionales</strong> articulados sobre tres ejes conductuales: <em>Directividad</em> (liderazgo vs. deferencia), <em>Sociabilidad</em> (calidez y cohesión vs. distancia) y <em>Orientación a la Tarea</em> (foco y diligencia vs. dispersión). Aunque el equilibrio tridimensional ofrece una base sólida para equipos multifase, la efectividad óptima depende también del <strong>tipo de tarea</strong>, el <strong>tamaño del grupo</strong> y la <strong>fase temporal del proyecto</strong>.
+                        <strong>Fundamento Científico (Modelo TRIAD - Driskell, Driskell, Burke y Salas, 2017):</strong> Este modelo sintetiza 154 roles descritos en la literatura científica en <strong>13 perfiles funcionales</strong> articulados sobre tres ejes conductuales: <em>Directividad</em> (iniciativa de mando frente a seguimiento), <em>Sociabilidad</em> (cercanía y cohesión frente a distancia) y <em>Orientación a la Tarea</em> (foco y rigor frente a dispersión). Aunque el equilibrio entre dimensiones ofrece una base sólida para equipos multifase, el rendimiento óptimo depende también del <strong>tipo de tarea</strong>, del <strong>tamaño del grupo</strong> y de la <strong>fase del proyecto</strong>.
                     </p>
 
-                    <!-- Sección 1: Índices Globales -->
-                    <h2 class="report-section-title">1. Índices Globales y Sinergia del Equipo</h2>
+                    <!-- Sección 1: Roles Presentes en el Equipo -->
+                    <h2 class="report-section-title">1. Roles Presentes en el Equipo y Descripción Funcional</h2>
+                    <p class="report-p">
+                        A continuación se detallan los <strong>${roleDiagnostics.uniqueTeamRoles.length} roles distintos</strong> identificados en la composición actual del equipo según sus coordenadas en el modelo TRIAD:
+                    </p>
+            `;
+
+            roleDiagnostics.uniqueTeamRoles.forEach(role => {
+                const isAlert = role.type === 'negative';
+                const titleColor = isAlert ? 'color: #dc2626;' : 'color: #1e3a8a;';
+                const alertTag = isAlert ? ' [Rol Disfuncional / Alerta]' : '';
+                const membersListStr = role.assignedMembers.join(', ');
+
+                reportHtml += `
+                    <div class="role-def-item">
+                        <div style="font-size: 9.8px; margin-bottom: 2px;">
+                            <strong style="${titleColor}">${role.name}${alertTag}</strong> 
+                            <span style="font-size: 8.5px; color: #4b5563;">&mdash; Desempeñado por: <strong>${membersListStr}</strong></span>
+                        </div>
+                        <div style="font-size: 8.2px; color: #6b7280; margin-bottom: 2px;">
+                            <em>Coordenadas de referencia (escala -3 a +3):</em> Directividad: ${role.dominance.toFixed(2)} | Sociabilidad: ${role.sociability.toFixed(2)} | Orientación a la Tarea: ${role.resolutivity.toFixed(2)}
+                        </div>
+                        <div style="font-size: 8.8px; color: #374151;">
+                            ${role.fullDesc}
+                        </div>
+                    </div>
+                `;
+            });
+
+            reportHtml += `
+                    <!-- Sección 2: Índices Globales -->
+                    <h2 class="report-section-title">2. Índices Globales y Sinergia del Equipo</h2>
                     
                     <table class="report-table">
                         <thead>
@@ -1450,17 +1568,17 @@
                         </p>
                     </div>
 
-                    <!-- Sección 2: Adecuación por Tipo de Tarea -->
-                    <h2 class="report-section-title">2. Adecuación según Tipo de Tarea y Dinámica Temporal</h2>
+                    <!-- Sección 3: Adecuación por Tipo de Tarea -->
+                    <h2 class="report-section-title">3. Adecuación según Tipo de Tarea y Dinámica Temporal</h2>
                     <p class="report-p">
-                        De acuerdo con la integración entre el modelo TRIAD y los entornos de tarea (Holland / Driskell & Salas), cada contexto demanda una configuración distinta de los ejes:
+                        De acuerdo con la integración entre el modelo TRIAD y los entornos de tarea (Holland / Driskell y Salas), cada contexto demanda una combinación distinta de los tres ejes:
                     </p>
                     <table class="report-table">
                         <thead>
                             <tr>
                                 <th style="width: 28%;">Entorno / Tipo de Tarea</th>
                                 <th style="width: 14%;">Ajuste</th>
-                                <th style="width: 58%;">Diagnóstico y Recomendación Operativa</th>
+                                <th style="width: 58%;">Diagnóstico y Recomendación Práctica</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1474,23 +1592,23 @@
                         </tbody>
                     </table>
                     <p class="report-p">
-                        <strong>Evolución Temporal del Proyecto:</strong> En fases <em>iniciales</em> (arranque y planificación) cobran protagonismo los roles de alta Directividad y Coordinación (<em>Team Leader, Coordinator</em>); en fases <em>intermedias</em> (ejecución y resolución) son críticos los roles analíticos y de soporte (<em>Problem Solver, Evaluator, Social</em>); y en fases <em>finales</em> (cierre y entrega) el peso recae en perfiles de alta Orientación a la Tarea y detalle (<em>Task Completer, Teamwork Support</em>).
+                        <strong>Evolución Temporal del Proyecto:</strong> En las fases <em>iniciales</em> (arranque y planificación) cobran protagonismo los roles de alta Directividad y Coordinación (<em>Team Leader, Coordinator</em>); en las fases <em>intermedias</em> (desarrollo y resolución) resultan clave los perfiles analíticos y de apoyo (<em>Problem Solver, Evaluator, Social</em>); y en las fases <em>finales</em> (cierre y entrega) el peso recae en quienes destacan por su Orientación a la Tarea y atención al detalle (<em>Task Completer, Teamwork Support</em>).
                     </p>
 
-                    <!-- Sección 3: Auditoría de Roles -->
-                    <h2 class="report-section-title">3. Auditoría de Roles, Redundancias y Riesgos</h2>
+                    <!-- Sección 4: Auditoría de Roles -->
+                    <h2 class="report-section-title">4. Auditoría de Roles, Redundancias y Riesgos</h2>
                     <ul class="report-list">
                         <li>
-                            <strong>Redundancias detectadas (Colisión de Roles):</strong> 
+                            <strong>Redundancias detectadas (Solapamiento de Roles):</strong> 
                             ${roleDiagnostics.redundancies.length > 0 
-                                ? `Coincidencia en ${roleDiagnostics.redundancies.join(', ')}. La evidencia advierte rendimientos decrecientes y posible solapamiento si varios miembros compiten por el mismo espacio funcional.` 
-                                : 'No se observan duplicidades significativas de roles; buena distribución del espacio tridimensional.'}
+                                ? `Coincidencia en ${roleDiagnostics.redundancies.join(', ')}. La evidencia advierte rendimientos decrecientes y posibles roces si varios miembros compiten por cubrir el mismo espacio funcional.` 
+                                : 'No se aprecian duplicidades relevantes de roles; buena distribución en las tres dimensiones.'}
                         </li>
                         <li>
                             <strong>Vacíos funcionales:</strong> 
                             ${roleDiagnostics.missingFunctions.length > 0 
                                 ? `<ul class="report-list" style="margin-top: 4px; margin-bottom: 0;"><li>${roleDiagnostics.missingFunctions.join('</li><li>')}</li></ul>` 
-                                : 'El equipo cubre satisfactoriamente las tres macro-funciones principales (Dirección, Cohesión y Ejecución).'}
+                                : 'El equipo cubre de forma equilibrada las tres grandes áreas funcionales (Dirección, Cohesión y Ejecución).'}
                         </li>
                     </ul>
             `;
@@ -1508,9 +1626,9 @@
                 `;
             }
 
-            // Sección 4: Listado Individual Paginable (sin tabla para evitar truncado)
+            // Sección 5: Listado Individual Paginable
             reportHtml += `
-                <h2 class="report-section-title report-section-page-break">4. Perfil Individual de los Integrantes (${membersData.length} miembros)</h2>
+                <h2 class="report-section-title report-section-page-break">5. Perfil Individual de los Integrantes (${membersData.length} miembros)</h2>
             `;
 
             membersData.forEach((member, index) => {
